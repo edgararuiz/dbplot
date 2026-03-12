@@ -2,7 +2,8 @@
 # dbplot <img src="man/figures/logo.png" align="right" alt="" width="220" />
 
 [![R-CMD-check](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dbplot)](https://cran.r-project.org/package=dbplot)
+[![CRAN
+status](https://img.shields.io/cran/v/dbplot?color=brightgreen)](https://CRAN.R-project.org/package=dbplot)
 [![Coverage
 status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=main)
 
