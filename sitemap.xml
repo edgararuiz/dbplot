@@ -1,0 +1,21 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/SPECIFIC_CHANGES.html</loc></url>
+<url><loc>/UPGRADE_CHECKLIST.html</loc></url>
+<url><loc>/UPGRADE_PLAN.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/db_bin.html</loc></url>
+<url><loc>/reference/db_compute_bins.html</loc></url>
+<url><loc>/reference/db_compute_boxplot.html</loc></url>
+<url><loc>/reference/db_compute_count.html</loc></url>
+<url><loc>/reference/db_compute_raster.html</loc></url>
+<url><loc>/reference/dbplot_bar.html</loc></url>
+<url><loc>/reference/dbplot_boxplot.html</loc></url>
+<url><loc>/reference/dbplot_histogram.html</loc></url>
+<url><loc>/reference/dbplot_line.html</loc></url>
+<url><loc>/reference/dbplot_raster.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+</urlset>
+
