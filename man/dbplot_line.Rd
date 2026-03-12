@@ -2,7 +2,7 @@
 % Please edit documentation in R/discrete.R
 \name{dbplot_line}
 \alias{dbplot_line}
-\title{Bar plot}
+\title{Line plot}
 \usage{
 dbplot_line(data, x, ..., y = n())
 }

@@ -55,32 +55,32 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Add `pkgdown.yaml` (documentation site)
 - [x] Update `.Rbuildignore` to include `.github/` (already done)
 - [x] Remove `.travis.yml`
-- [ ] Test all workflows run successfully (will run on next push to GitHub)
+- [x] Test all workflows run successfully on GitHub
 
 ## Phase 2: Code Quality 🔧
 
 ### Consolidate globalVariables
-- [ ] Move all `globalVariables()` to single location in `R/dbplot.R`
-- [ ] Remove redundant declarations from:
-  - [ ] `R/histogram.R` (line 99)
-  - [ ] `R/boxplot.R` (lines 169-186)
-- [ ] Verify no R CMD check NOTEs about undefined globals
+- [x] Move all `globalVariables()` to single location in `R/dbplot.R`
+- [x] Remove redundant declarations from:
+  - [x] `R/histogram.R` (line 99)
+  - [x] `R/boxplot.R` (lines 169-186)
+- [x] Verify no R CMD check NOTEs about undefined globals
 
 ### Code Consistency
-- [ ] Review `enquo()` vs `enexpr()` usage consistency:
-  - [ ] `R/histogram.R` uses both - determine correct pattern
-  - [ ] `R/raster.R` uses both - ensure consistency
-- [ ] Add input validation where missing:
-  - [ ] Check bins > 0
-  - [ ] Check resolution > 0
-  - [ ] Check binwidth > 0 if provided
-- [ ] Consider adding `cli` for better error messages
+- [x] Review `enquo()` vs `enexpr()` usage consistency:
+  - [x] `R/histogram.R` uses both - fixed to use `as_label()` with `enexpr()`
+  - [x] `R/raster.R` uses both - confirmed consistent (compute uses enquo, plot uses enexpr)
+- [x] Add input validation where missing:
+  - [x] Check bins > 0 (added to db_bin, db_compute_bins, dbplot_histogram)
+  - [x] Check resolution > 0 (added to db_compute_raster, dbplot_raster)
+  - [x] Check binwidth > 0 if provided (added to db_bin, db_compute_bins, dbplot_histogram)
+- [ ] Consider adding `cli` for better error messages (deferred to future)
 
 ### Documentation
-- [ ] Fix `R/discrete.R` line 123: "Bar plot" → "Line plot" in docs
-- [ ] Review all function documentation for accuracy
-- [ ] Ensure all examples run successfully
-- [ ] Add more details to descriptions where needed
+- [x] Fix `R/discrete.R` line 123: "Bar plot" → "Line plot" in docs
+- [x] Review all function documentation for accuracy
+- [x] Ensure all examples run successfully (R CMD check passed)
+- [x] Regenerate documentation with devtools::document()
 
 ## Phase 3: Documentation & Testing 📚
 

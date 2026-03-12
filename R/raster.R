@@ -49,6 +49,10 @@ db_compute_raster <- function(
   resolution = 100,
   complete = FALSE
 ) {
+  if (resolution <= 0) {
+    stop("`resolution` must be greater than 0", call. = FALSE)
+  }
+
   x <- enquo(x)
   y <- enquo(y)
   fillname <- enquo(fill)
@@ -178,6 +182,10 @@ dbplot_raster <- function(
   resolution = 100,
   complete = FALSE
 ) {
+  if (resolution <= 0) {
+    stop("`resolution` must be greater than 0", call. = FALSE)
+  }
+
   x <- enexpr(x)
   y <- enexpr(y)
   fillname <- enexpr(fill)

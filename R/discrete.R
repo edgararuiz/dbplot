@@ -120,7 +120,7 @@ dbplot_bar <- function(data, x, ..., y = n()) {
   output
 }
 
-#' Bar plot
+#' Line plot
 #'
 #' @description
 #'

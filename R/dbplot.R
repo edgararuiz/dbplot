@@ -7,4 +7,25 @@
 #' @importFrom dplyr select n tibble distinct
 #' @importFrom stats quantile
 #' @keywords internal
-utils::globalVariables(c("."))
+
+# Global variables used in NSE contexts across the package
+utils::globalVariables(c(
+  ".",
+  "aes",
+  "iqr",
+  "labs",
+  "lower",
+  "max_iqr",
+  "max_raw",
+  "middle",
+  "min_iqr",
+  "min_raw",
+  "percentile_approx",
+  "upper",
+  "w",
+  "weight",
+  "x_",
+  "y",
+  "ymax",
+  "ymin"
+))

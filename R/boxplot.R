@@ -168,22 +168,3 @@ dbplot_boxplot <- function(data, x, var, coef = 1.5) {
     ) +
     labs(x = x)
 }
-
-globalVariables(c(
-  "upper",
-  "ymax",
-  "weight",
-  "x_",
-  "y",
-  "aes",
-  "ymin",
-  "lower",
-  "middle",
-  "upper",
-  "iqr",
-  "max_raw",
-  "max_iqr",
-  "min_raw",
-  "min_iqr",
-  "percentile_approx"
-))

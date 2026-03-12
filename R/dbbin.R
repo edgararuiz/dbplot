@@ -26,6 +26,13 @@
 #'   tally()
 #' @export
 db_bin <- function(var, bins = 30, binwidth = NULL) {
+  if (!is.null(bins) && bins <= 0) {
+    stop("`bins` must be greater than 0", call. = FALSE)
+  }
+  if (!is.null(binwidth) && binwidth <= 0) {
+    stop("`binwidth` must be greater than 0", call. = FALSE)
+  }
+
   var <- enquo(var)
   var <- quo_squash(var)
 

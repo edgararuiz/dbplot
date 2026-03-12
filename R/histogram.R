@@ -27,6 +27,13 @@
 #'
 #' @export
 db_compute_bins <- function(data, x, bins = 30, binwidth = NULL) {
+  if (!is.null(bins) && bins <= 0) {
+    stop("`bins` must be greater than 0", call. = FALSE)
+  }
+  if (!is.null(binwidth) && binwidth <= 0) {
+    stop("`binwidth` must be greater than 0", call. = FALSE)
+  }
+
   x <- enquo(x)
 
   xf <- db_bin(
@@ -75,6 +82,13 @@ db_compute_bins <- function(data, x, bins = 30, binwidth = NULL) {
 #'
 #' @export
 dbplot_histogram <- function(data, x, bins = 30, binwidth = NULL) {
+  if (!is.null(bins) && bins <= 0) {
+    stop("`bins` must be greater than 0", call. = FALSE)
+  }
+  if (!is.null(binwidth) && binwidth <= 0) {
+    stop("`binwidth` must be greater than 0", call. = FALSE)
+  }
+
   x <- enexpr(x)
 
   df <- db_compute_bins(
@@ -91,9 +105,7 @@ dbplot_histogram <- function(data, x, bins = 30, binwidth = NULL) {
   ggplot(df) +
     geom_col(aes(x, count)) +
     labs(
-      x = quo_name(x),
+      x = as_label(x),
       y = "count"
     )
 }
-
-globalVariables(c("w", "labs"))
