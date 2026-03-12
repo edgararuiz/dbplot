@@ -171,12 +171,18 @@ db_flights |>
 
 ### Boxplot
 
-It expects a discrete variable to group by, and a continuous variable to calculate the percentiles and IQR. It doesn't calculate outliers. It has been tested with the following connections:
+It expects a discrete variable to group by, and a continuous variable to calculate the percentiles and IQR. It doesn't calculate outliers.
 
-- MS SQL Server
-- PostgreSQL
-- Oracle
-- `sparklyr`
+Boxplot functions require database support for percentile/quantile calculations.
+
+**Supported databases:**
+
+- Spark/Hive (via sparklyr) - uses `percentile_approx()`
+- SQL Server (2012+) - uses `PERCENTILE_CONT()`
+- PostgreSQL (9.4+) - uses `percentile_cont()`
+- Oracle (9i+) - uses `PERCENTILE_CONT()`
+
+**Not supported:** SQLite, MySQL < 8.0, MariaDB (no percentile functions)
 
 Here is an example using `dbplot_boxplot()` with a local data frame:
 

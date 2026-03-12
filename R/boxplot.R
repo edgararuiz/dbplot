@@ -2,13 +2,21 @@
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to create boxplot calculations.
+#' Uses dplyr operations to create boxplot calculations.
 #' Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
 #' in R are: tbl_sql, tbl_dbi, tbl_spark
 #'
-#' It currently only works with Spark, Hive, and SQL Server connections.
+#' Requires database support for percentile/quantile functions. Confirmed to work with:
+#' \itemize{
+#'   \item Spark/Hive (via sparklyr) - uses percentile_approx()
+#'   \item SQL Server (2012+) - uses PERCENTILE_CONT()
+#'   \item PostgreSQL (9.4+) - uses percentile_cont()
+#'   \item Oracle (9i+) - uses PERCENTILE_CONT()
+#' }
+#'
+#' Does NOT work with SQLite, MySQL < 8.0, or MariaDB (no percentile support).
 #'
 #' Note that this function supports input tbl that already contains
 #' grouping variables. This can be useful when creating faceted boxplots.
@@ -105,13 +113,14 @@ calc_boxplot_mssql <- function(res, var) {
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data and then `ggplot2`
-#' to create the boxplot  Because of this approach,
+#' Uses dplyr operations to aggregate data and then `ggplot2`
+#' to create the boxplot. Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
 #' in R are: tbl_sql, tbl_dbi, tbl_spark
 #'
-#' It currently only works with Spark and Hive connections.
+#' Requires database support for percentile/quantile functions.
+#' See \code{\link{db_compute_boxplot}} for supported database backends.
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable in which to group the boxplots
