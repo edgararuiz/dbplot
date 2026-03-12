@@ -74,7 +74,7 @@ By default `dbplot_histogram()` creates a 30 bin histogram
 ``` r
 library(ggplot2)
 
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance)
 ```
 
@@ -83,7 +83,7 @@ db_flights %>%
 Use `binwidth` to fix the bin size
 
 ``` r
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance, binwidth = 400)
 ```
 
@@ -92,7 +92,7 @@ db_flights %>%
 Because it outputs a `ggplot2` object, more customization can be done
 
 ``` r
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance, binwidth = 400) +
   labs(title = "Flights - Distance traveled") +
   theme_bw()
@@ -119,7 +119,7 @@ inside each square or processes some aggregation, like an average.
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_raster(sched_dep_time, sched_arr_time) 
 ```
 
@@ -130,7 +130,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_raster(
     sched_dep_time, 
     sched_arr_time, 
@@ -146,7 +146,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_raster(
     sched_dep_time, 
     sched_arr_time, 
@@ -165,7 +165,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_bar(origin)
 ```
 
@@ -177,7 +177,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_bar(origin, avg_delay =  mean(dep_delay, na.rm = TRUE))
 ```
 
@@ -191,7 +191,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_line(month)
 ```
 
@@ -203,7 +203,7 @@ db_flights %>%
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   dbplot_line(month, avg_delay = mean(dep_delay, na.rm = TRUE))
 ```
 
@@ -223,7 +223,7 @@ been tested with the following connections:
 Here is an example using `dbplot_boxplot()` with a local data frame:
 
 ``` r
-nycflights13::flights %>%
+nycflights13::flights |>
   dbplot_boxplot(origin, distance)
 ```
 
@@ -248,7 +248,7 @@ can also be accessed:
 <!-- end list -->
 
 ``` r
-db_flights %>%
+db_flights |>
   db_compute_bins(arr_delay) 
 #> # A tibble: 28 x 2
 #>    arr_delay  count
@@ -269,9 +269,9 @@ db_flights %>%
 The data can be piped to a plot
 
 ``` r
-db_flights %>%
-  filter(arr_delay < 100 , arr_delay > -50) %>%
-  db_compute_bins(arr_delay) %>%
+db_flights |>
+  filter(arr_delay < 100 , arr_delay > -50) |>
+  db_compute_bins(arr_delay) |>
   ggplot() +
   geom_col(aes(arr_delay, count, fill = count))
 ```
@@ -296,8 +296,8 @@ db_bin(var)
 ```
 
 ``` r
-db_flights %>%
-  group_by(x = !! db_bin(arr_delay)) %>%
+db_flights |>
+  group_by(x = !! db_bin(arr_delay)) |>
   tally()
 #> # Source:   lazy query [?? x 2]
 #> # Database: sqlite 3.29.0 [:memory:]
@@ -317,11 +317,11 @@ db_flights %>%
 ```
 
 ``` r
-db_flights %>%
-  filter(!is.na(arr_delay)) %>%
-  group_by(x = !! db_bin(arr_delay)) %>%
-  tally()%>%
-  collect %>%
+db_flights |>
+  filter(!is.na(arr_delay)) |>
+  group_by(x = !! db_bin(arr_delay)) |>
+  tally()|>
+  collect |>
   ggplot() +
   geom_col(aes(x, n))
 ```

@@ -20,7 +20,7 @@
 #'
 #' @examples
 #'
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_boxplot(am, mpg)
 #' @export
 db_compute_boxplot <- function(data, x, var, coef = 1.5) {
@@ -123,7 +123,7 @@ calc_boxplot_mssql <- function(res, var) {
 #'  \code{\link{dbplot_raster}}, \code{\link{dbplot_histogram}}
 #'
 #' @examples
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_boxplot(am, mpg)
 #'
 #' @export

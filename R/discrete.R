@@ -15,15 +15,15 @@
 #' @examples
 #'
 #' # Returns the row count per am
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_count(am)
 #'
 #' # Returns the average mpg per am
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_count(am, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_count(am, mean(mpg), sum(mpg))
 #' @export
 db_compute_count <- function(data, x, ..., y = n()) {
@@ -61,15 +61,15 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #' library(dplyr)
 #'
 #' # Returns a plot of the row count per am
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_bar(am)
 #'
 #' # Returns a plot of the average mpg per am
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_bar(am, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_bar(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
 #' @seealso
 #' \code{\link{dbplot_line}} ,
@@ -146,15 +146,15 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #' library(dplyr)
 #'
 #' # Returns a plot of the row count per cyl
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_line(cyl)
 #'
 #' # Returns a plot of the average mpg per cyl
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_line(cyl, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_line(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
 #' @seealso
 #' \code{\link{dbplot_bar}},

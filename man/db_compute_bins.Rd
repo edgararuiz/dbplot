@@ -25,11 +25,11 @@ in R are: tbl_sql, tbl_dbi, tbl_spark
 \examples{
 
 # Returns record count for 30 bins in mpg
-mtcars \%>\%
+mtcars |>
   db_compute_bins(mpg)
 
 # Returns record count for bins of size 10
-mtcars \%>\%
+mtcars |>
   db_compute_bins(mpg, binwidth = 10)
 }
 \seealso{

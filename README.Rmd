@@ -85,21 +85,21 @@ By default `dbplot_histogram()` creates a 30 bin histogram
 ```{r}
 library(ggplot2)
 
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance)
 ```
 
 Use `binwidth` to fix the bin size
 
 ```{r}
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance, binwidth = 400)
 ```
 
 Because it outputs a `ggplot2` object, more customization can be done
 
 ```{r}
-db_flights %>% 
+db_flights |> 
   dbplot_histogram(distance, binwidth = 400) +
   labs(title = "Flights - Distance traveled") +
   theme_bw()
@@ -114,14 +114,14 @@ A Raster plot basically does the same as a Histogram. It takes two continuous va
 
 - If no `fill` argument is passed, the default calculation will be count, `n()`
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_raster(sched_dep_time, sched_arr_time) 
 ```
 
 
 - Pass an aggregation formula that can run inside the database
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_raster(
     sched_dep_time, 
     sched_arr_time, 
@@ -131,7 +131,7 @@ db_flights %>%
 
 - Increase or decrease for more, or less, definition.  The `resolution` argument controls that, it defaults to 100 
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_raster(
     sched_dep_time, 
     sched_arr_time, 
@@ -144,14 +144,14 @@ db_flights %>%
 
 - `dbplot_bar()` defaults to a tally() of each value in a discrete variable
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_bar(origin)
 ```
 
 
 - Pass a formula, and column name, that will be operated for each value in the discrete variable
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_bar(origin, avg_delay =  mean(dep_delay, na.rm = TRUE))
 ```
 
@@ -159,13 +159,13 @@ db_flights %>%
 
 - `dbplot_line()` defaults to a tally() of each value in a discrete variable
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_line(month)
 ```
 
 - Pass a formula that will be operated for each value in the discrete variable
 ```{r}
-db_flights %>%
+db_flights |>
   dbplot_line(month, avg_delay = mean(dep_delay, na.rm = TRUE))
 ```
 
@@ -181,7 +181,7 @@ It expects a discrete variable to group by, and a continuous variable to calcula
 Here is an example using `dbplot_boxplot()` with a local data frame:
 
 ```{r}
-nycflights13::flights %>%
+nycflights13::flights |>
   dbplot_boxplot(origin, distance)
 ```
 
@@ -199,16 +199,16 @@ If a more customized plot is needed, the data the underpins the plots can also b
 
 
 ```{r}
-db_flights %>%
+db_flights |>
   db_compute_bins(arr_delay) 
 ```
 
 The data can be piped to a plot
 
 ```{r}
-db_flights %>%
-  filter(arr_delay < 100 , arr_delay > -50) %>%
-  db_compute_bins(arr_delay) %>%
+db_flights |>
+  filter(arr_delay < 100 , arr_delay > -50) |>
+  db_compute_bins(arr_delay) |>
   ggplot() +
   geom_col(aes(arr_delay, count, fill = count))
 ```
@@ -224,17 +224,17 @@ db_bin(var)
 
 
 ```{r}
-db_flights %>%
-  group_by(x = !! db_bin(arr_delay)) %>%
+db_flights |>
+  group_by(x = !! db_bin(arr_delay)) |>
   tally()
 ```
 
 ```{r}
-db_flights %>%
-  filter(!is.na(arr_delay)) %>%
-  group_by(x = !! db_bin(arr_delay)) %>%
-  tally()%>%
-  collect %>%
+db_flights |>
+  filter(!is.na(arr_delay)) |>
+  group_by(x = !! db_bin(arr_delay)) |>
+  tally()|>
+  collect |>
   ggplot() +
   geom_col(aes(x, n))
 ```

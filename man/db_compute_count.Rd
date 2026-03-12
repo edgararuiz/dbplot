@@ -24,14 +24,14 @@ in R are: tbl_sql, tbl_dbi, tbl_sql
 \examples{
 
 # Returns the row count per am
-mtcars \%>\%
+mtcars |>
   db_compute_count(am)
 
 # Returns the average mpg per am
-mtcars \%>\%
+mtcars |>
   db_compute_count(am, mean(mpg))
 
 # Returns the average and sum of mpg per am
-mtcars \%>\%
+mtcars |>
   db_compute_count(am, mean(mpg), sum(mpg))
 }

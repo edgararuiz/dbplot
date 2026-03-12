@@ -1,3 +1,26 @@
+# dbplot 0.4.0
+
+## Breaking Changes
+
+* Package no longer re-exports the `%>%` pipe operator. Users should use R's
+  native `|>` pipe (available in R >= 4.1.0) or load magrittr explicitly if
+  they prefer `%>%`.
+* Minimum R version increased from 3.1 to 4.1.0
+
+## Improvements
+
+* Updated all package dependencies to modern versions:
+  - dplyr >= 1.0.0 (was >= 0.7)
+  - rlang >= 1.0.0 (was >= 0.3)
+  - ggplot2 >= 3.3.0 (was unversioned)
+  - dbplyr >= 2.0.0 (was >= 1.4.0)
+  - testthat >= 3.0.0 (was unversioned)
+* Removed magrittr dependency (using native pipe)
+* All examples now use native pipe `|>` instead of `%>%`
+* Fixed typos in code and documentation
+* Improved S3 method exports using modern roxygen2 patterns
+
+
 # dbplot 0.3.3
 
 - Exports the pipe operator

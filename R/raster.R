@@ -34,11 +34,11 @@
 #'
 #'
 #' # Returns a 100x100 grid of record count of intersections of eruptions and waiting
-#' faithful %>%
+#' faithful |>
 #'   db_compute_raster(eruptions, waiting)
 #'
 #' # Returns a 50x50 grid of eruption averages of intersections of eruptions and waiting
-#' faithful %>%
+#' faithful |>
 #'   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
 #' @export
 db_compute_raster <- function(
@@ -159,11 +159,11 @@ db_compute_raster2 <- function(
 #' library(dplyr)
 #'
 #' # Returns a 100x100 raster plot of record count of intersections of eruptions and waiting
-#' faithful %>%
+#' faithful |>
 #'   dbplot_raster(eruptions, waiting)
 #'
 #' # Returns a 50x50 raster plot of eruption averages of intersections of eruptions and waiting
-#' faithful %>%
+#' faithful |>
 #'   dbplot_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
 #' @seealso
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,

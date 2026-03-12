@@ -1,4 +1,5 @@
 ^\.github$
+^\.claude$
 ^pkgdown$
 ^.*\.Rproj$
 ^\.Rproj\.user$

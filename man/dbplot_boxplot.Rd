@@ -25,7 +25,7 @@ in R are: tbl_sql, tbl_dbi, tbl_spark
 It currently only works with Spark and Hive connections.
 }
 \examples{
-mtcars \%>\%
+mtcars |>
   dbplot_boxplot(am, mpg)
 
 }

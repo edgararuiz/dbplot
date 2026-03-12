@@ -14,16 +14,20 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Add `lifecycle` to Suggests
 - [x] Remove `magrittr` from Imports (using native pipe)
 - [x] Update RoxygenNote from 7.0.2 to 7.3.3
-- [x] Add `cli` to Imports for better messages
 - [x] Run `devtools::document()` to regenerate documentation
+- [x] Add `.claude` to .Rbuildignore
+- [ ] Add `cli` to Imports for better messages (deferred to Phase 2)
 
 ### Migrate to Native Pipe
-- [ ] Delete or update `R/utils-pipe.R` (removes %>% re-export)
-- [ ] Update all examples in .R files to use |> instead of %>%
-- [ ] Update README.md examples to use |> instead of %>%
-- [ ] Search for any vignettes using %>%
-- [ ] Update NEWS.md to note breaking change (no longer exports %>%)
-- [ ] Test all examples still work
+- [x] Delete or update `R/utils-pipe.R` (removes %>% re-export)
+- [x] Update all examples in .R files to use |> instead of %>%
+- [x] Update README.md examples to use |> instead of %>%
+- [x] Update README.Rmd to use |> instead of %>%
+- [x] Search for any vignettes using %>% (none found)
+- [x] Update NEWS.md to note breaking change (no longer exports %>%)
+- [x] Update NAMESPACE to remove magrittr import and %>% export
+- [x] Regenerate documentation (deleted man/pipe.Rd)
+- [x] Test all examples still work
 
 ### Fix Typos
 - [ ] `test-raster.R` line 8: "complte" → "complete"

@@ -29,6 +29,6 @@ grouping variables. This can be useful when creating faceted boxplots.
 }
 \examples{
 
-mtcars \%>\%
+mtcars |>
   db_compute_boxplot(am, mpg)
 }

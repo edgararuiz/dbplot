@@ -47,10 +47,10 @@ intersections without a value, the less data is downloaded from the database.
 
 
 # Returns a 100x100 grid of record count of intersections of eruptions and waiting
-faithful \%>\%
+faithful |>
   db_compute_raster(eruptions, waiting)
 
 # Returns a 50x50 grid of eruption averages of intersections of eruptions and waiting
-faithful \%>\%
+faithful |>
   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
 }

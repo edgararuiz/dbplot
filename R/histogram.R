@@ -16,11 +16,11 @@
 #' @examples
 #'
 #' # Returns record count for 30 bins in mpg
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_bins(mpg)
 #'
 #' # Returns record count for bins of size 10
-#' mtcars %>%
+#' mtcars |>
 #'   db_compute_bins(mpg, binwidth = 10)
 #' @seealso
 #' \code{\link{db_bin}},
@@ -63,11 +63,11 @@ db_compute_bins <- function(data, x, bins = 30, binwidth = NULL) {
 #' library(dplyr)
 #'
 #' # A ggplot histogram with 30 bins
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_histogram(mpg)
 #'
 #' # A ggplot histogram with bins of size 10
-#' mtcars %>%
+#' mtcars |>
 #'   dbplot_histogram(mpg, binwidth = 10)
 #' @seealso
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,
