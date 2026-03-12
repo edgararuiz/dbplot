@@ -7,10 +7,10 @@
 #' intersections of the two variables. A Raster plot may be a better option,
 #' because it concentrates the intersections into squares that are easier to parse visually.
 #'
-#' Uses very generic dplyr code to aggregate data.  Because of this approach,
+#' Uses dplyr operations to aggregate data. Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
-#' in R are: tbl_sql, tbl_dbi, tbl_sql
+#' in R are: tbl_sql, tbl_dbi, tbl_spark
 #'
 #' @details
 #'
@@ -26,8 +26,8 @@
 #' @param x A continuous variable
 #' @param y A continuous variable
 #' @param fill The aggregation formula. Defaults to count (n)
-#' @param resolution The number of bins created by variable. The highest the number, the more records
-#' can be potentially imported from the source
+#' @param resolution The number of bins created per variable. The higher the number, the more records
+#' will be imported from the source
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
 #' @examples
@@ -132,8 +132,8 @@ db_compute_raster2 <- function(
 #' intersections of the two variables. A Raster plot may be a better option,
 #' because it concentrates the intersections into squares that are easier to parse visually.
 #'
-#' Uses very generic dplyr code to aggregate data and ggplot2 to create
-#' a raster plot.  Because of this approach,
+#' Uses dplyr operations to aggregate data and ggplot2 to create
+#' a raster plot. Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
 #' in R are: tbl_sql, tbl_dbi, tbl_spark
@@ -153,8 +153,8 @@ db_compute_raster2 <- function(
 #' @param x A continuous variable
 #' @param y A continuous variable
 #' @param fill The aggregation formula. Defaults to count (n)
-#' @param resolution The number of bins created by variable. The highest the number, the more records
-#' can be potentially imported from the source
+#' @param resolution The number of bins created per variable. The higher the number, the more records
+#' will be imported from the source
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
 #' @examples

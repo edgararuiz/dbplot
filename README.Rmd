@@ -21,8 +21,8 @@ knitr::opts_chunk$set(
 
 
 [![R-CMD-check](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dbplot)](https://cran.r-project.org/package=dbplot)
-[![Coverage status](https://codecov.io/gh/edgararuiz/dbplot/branch/master/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=master)
+[![CRAN status](https://img.shields.io/cran/v/dbplot?color=brightgreen)](https://CRAN.R-project.org/package=dbplot)
+[![Coverage status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=main)
 
 -   [Installation](#installation)
 -   [Connecting to a data source](#connecting-to-a-data-source)
@@ -37,34 +37,34 @@ knitr::opts_chunk$set(
 -   [`db_bin()`](#db_bin)
 
 Leverages `dplyr` to process the calculations of a plot inside a database.  This package provides helper functions that abstract the work at three levels:
-    
-1. Functions that ouput a `ggplot2` object
-2. Functions that outputs a `data.frame` object with the calculations
-3. Creates the formula needed to calculate bins for a Histogram or a Raster plot
+
+1. Functions that output a `ggplot2` object
+2. Functions that output a `data.frame` object with the calculations
+3. Functions that create formulas for calculating bins for a Histogram or a Raster plot
 
 ## Installation
 
 You can install the released version from CRAN:
 ```{r, eval = FALSE}
-# install.packages("dbplot")
+install.packages("dbplot")
 ```
 
-Or the the development version from GitHub, using the `remotes` package:
+Or the development version from GitHub, using the `remotes` package:
 ```{r, eval = FALSE}
-# install.packages("remotes")
-# remotes::install_github("edgararuiz/dbplot")
+install.packages("remotes")
+pak::pak("edgararuiz/dbplot")
 ```
 
 
 ## Connecting to a data source
 
-- For more information on how to connect to databases, including Hive, please visit http://db.rstudio.com 
+- For more information on how to connect to databases, including Hive, please visit https://solutions.posit.co/connections/db/
 
-- To use Spark, please visit the `sparklyr` official website: http://spark.rstudio.com
+- To use Spark, please visit the `sparklyr` official website: https://spark.posit.co
 
 ## Example
 
-In addition to database connections, the functions work with `sparklyr`. A local `RSQLite` database will be used for the examples in this README.  
+The functions work with standard database connections (via DBI/dbplyr) and with Spark connections (via sparklyr). A local `RSQLite` database will be used for the examples in this README.  
 
 
 ```{r}
@@ -142,14 +142,14 @@ db_flights |>
 
 ### Bar Plot
 
-- `dbplot_bar()` defaults to a tally() of each value in a discrete variable
+- `dbplot_bar()` defaults to a count() of each value in a discrete variable
 ```{r}
 db_flights |>
   dbplot_bar(origin)
 ```
 
 
-- Pass a formula, and column name, that will be operated for each value in the discrete variable
+- Pass an aggregation formula that will be calculated for each value in the discrete variable
 ```{r}
 db_flights |>
   dbplot_bar(origin, avg_delay =  mean(dep_delay, na.rm = TRUE))
@@ -157,7 +157,7 @@ db_flights |>
 
 ### Line plot
 
-- `dbplot_line()` defaults to a tally() of each value in a discrete variable
+- `dbplot_line()` defaults to a count() of each value in a discrete variable
 ```{r}
 db_flights |>
   dbplot_line(month)
@@ -171,12 +171,18 @@ db_flights |>
 
 ### Boxplot
 
-It expects a discrete variable to group by, and a continuous variable to calculate the percentiles and IQR. It doesn't calculate outliers. It has been tested with the following connections:
+It expects a discrete variable to group by, and a continuous variable to calculate the percentiles and IQR. It doesn't calculate outliers.
 
-- MS SQL Server
-- PostgreSQL
-- Oracle
-- `sparklyr`
+Boxplot functions require database support for percentile/quantile calculations.
+
+**Supported databases:**
+
+- Spark/Hive (via sparklyr) - uses `percentile_approx()`
+- SQL Server (2012+) - uses `PERCENTILE_CONT()`
+- PostgreSQL (9.4+) - uses `percentile_cont()`
+- Oracle (9i+) - uses `PERCENTILE_CONT()`
+
+**Not supported:** SQLite, MySQL < 8.0, MariaDB (no percentile functions)
 
 Here is an example using `dbplot_boxplot()` with a local data frame:
 
@@ -226,15 +232,15 @@ db_bin(var)
 ```{r}
 db_flights |>
   group_by(x = !! db_bin(arr_delay)) |>
-  tally()
+  count()
 ```
 
 ```{r}
 db_flights |>
   filter(!is.na(arr_delay)) |>
   group_by(x = !! db_bin(arr_delay)) |>
-  tally()|>
-  collect |>
+  count()|>
+  collect() |>
   ggplot() +
   geom_col(aes(x, n))
 ```

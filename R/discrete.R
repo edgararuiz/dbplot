@@ -2,14 +2,14 @@
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data.  Because of this approach,
+#' Uses dplyr operations to aggregate data. Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
-#' in R are: tbl_sql, tbl_dbi, tbl_sql
+#' in R are: tbl_sql, tbl_dbi, tbl_spark
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
@@ -44,7 +44,7 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data and then `ggplot2`
+#' Uses dplyr operations to aggregate data and then `ggplot2`
 #' to create the plot.  Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
@@ -52,7 +52,7 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
@@ -124,7 +124,7 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data and then `ggplot2`
+#' Uses dplyr operations to aggregate data and then `ggplot2`
 #' to create a line plot.  Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
@@ -137,7 +137,7 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples

@@ -2,7 +2,7 @@
 % Please edit documentation in R/histogram.R
 \name{db_compute_bins}
 \alias{db_compute_bins}
-\title{Calculates a histogram bins}
+\title{Calculate histogram bins}
 \usage{
 db_compute_bins(data, x, bins = 30, binwidth = NULL)
 }
@@ -13,10 +13,10 @@ db_compute_bins(data, x, bins = 30, binwidth = NULL)
 
 \item{bins}{Number of bins. Defaults to 30.}
 
-\item{binwidth}{Single value that sets the side of the bins, it overrides bins}
+\item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
 \description{
-Uses very generic dplyr code to create histogram bins.
+Uses dplyr operations to create histogram bins.
 Because of this approach,
 the calculations automatically run inside the database if `data` has
 a database or sparklyr connection. The `class()` of such tables

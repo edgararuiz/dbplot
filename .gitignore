@@ -8,3 +8,5 @@ inst/doc
 logs/
 README_files
 pkgdown
+.claude
+README.html

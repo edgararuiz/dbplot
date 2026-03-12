@@ -11,12 +11,12 @@ dbplot_bar(data, x, ..., y = n())
 
 \item{x}{A discrete variable}
 
-\item{...}{A set of named or unamed aggregations}
+\item{...}{A set of named or unnamed aggregations}
 
 \item{y}{The aggregation formula. Defaults to count (n)}
 }
 \description{
-Uses very generic dplyr code to aggregate data and then `ggplot2`
+Uses dplyr operations to aggregate data and then `ggplot2`
 to create the plot.  Because of this approach,
 the calculations automatically run inside the database if `data` has
 a database or sparklyr connection. The `class()` of such tables

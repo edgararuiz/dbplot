@@ -18,8 +18,8 @@ db_compute_raster2(data, x, y, fill = n(), resolution = 100, complete = FALSE)
 
 \item{fill}{The aggregation formula. Defaults to count (n)}
 
-\item{resolution}{The number of bins created by variable. The highest the number, the more records
-can be potentially imported from the source}
+\item{resolution}{The number of bins created per variable. The higher the number, the more records
+will be imported from the source}
 
 \item{complete}{Uses tidyr::complete to include empty bins. Inserts value of 0.}
 }
@@ -29,10 +29,10 @@ this may not be practical when visualizing millions or billions of dots represen
 intersections of the two variables. A Raster plot may be a better option,
 because it concentrates the intersections into squares that are easier to parse visually.
 
-Uses very generic dplyr code to aggregate data.  Because of this approach,
+Uses dplyr operations to aggregate data. Because of this approach,
 the calculations automatically run inside the database if `data` has
 a database or sparklyr connection. The `class()` of such tables
-in R are: tbl_sql, tbl_dbi, tbl_sql
+in R are: tbl_sql, tbl_dbi, tbl_spark
 }
 \details{
 There are two considerations when using a Raster plot with a database. Both considerations are related

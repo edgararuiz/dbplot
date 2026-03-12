@@ -11,7 +11,7 @@ db_bin(var, bins = 30, binwidth = NULL)
 
 \item{bins}{Number of bins. Defaults to 30.}
 
-\item{binwidth}{Single value that sets the side of the bins, it overrides bins}
+\item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
 \description{
 Uses the rlang package to build the formula needed to create the bins of a numeric variable
@@ -23,15 +23,15 @@ verb.
 library(dplyr)
 
 # Important: Always name the field and
-# prefix the function with `!!`` (See Details)
+# prefix the function with `!!` (See Details)
 
 # Uses the default 30 bins
 mtcars |>
   group_by(x = !!db_bin(mpg)) |>
-  tally()
+  count()
 
 # Uses binwidth which overrides bins
 mtcars |>
   group_by(x = !!db_bin(mpg, binwidth = 10)) |>
-  tally()
+  count()
 }

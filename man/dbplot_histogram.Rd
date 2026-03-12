@@ -13,11 +13,11 @@ dbplot_histogram(data, x, bins = 30, binwidth = NULL)
 
 \item{bins}{Number of bins. Defaults to 30.}
 
-\item{binwidth}{Single value that sets the side of the bins, it overrides bins}
+\item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
 \description{
-Uses very generic dplyr code to aggregate data and then `ggplot2`
-to create the histogram.  Because of this approach,
+Uses dplyr operations to aggregate data and then `ggplot2`
+to create the histogram. Because of this approach,
 the calculations automatically run inside the database if `data` has
 a database or sparklyr connection. The `class()` of such tables
 in R are: tbl_sql, tbl_dbi, tbl_spark

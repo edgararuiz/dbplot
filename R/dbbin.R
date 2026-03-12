@@ -6,24 +6,24 @@
 #'
 #' @param var Variable name or formula
 #' @param bins Number of bins. Defaults to 30.
-#' @param binwidth Single value that sets the side of the bins, it overrides bins
+#' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
 #' @examples
 #'
 #' library(dplyr)
 #'
 #' # Important: Always name the field and
-#' # prefix the function with `!!`` (See Details)
+#' # prefix the function with `!!` (See Details)
 #'
 #' # Uses the default 30 bins
 #' mtcars |>
 #'   group_by(x = !!db_bin(mpg)) |>
-#'   tally()
+#'   count()
 #'
 #' # Uses binwidth which overrides bins
 #' mtcars |>
 #'   group_by(x = !!db_bin(mpg, binwidth = 10)) |>
-#'   tally()
+#'   count()
 #' @export
 db_bin <- function(var, bins = 30, binwidth = NULL) {
   if (!is.null(bins) && bins <= 0) {
