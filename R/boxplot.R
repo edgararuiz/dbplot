@@ -33,9 +33,10 @@ db_compute_boxplot <- function(data, x, var, coef = 1.5) {
   }
   var <- enquo(var)
   var <- quo_squash(var)
-  res <- group_by(data, !!!x, add = TRUE)
+  res <- group_by(data, !!!x, .add = TRUE)
   res <- calc_boxplot(res, var)
-  res <- mutate(res,
+  res <- mutate(
+    res,
     iqr = (upper - lower) * coef,
     min_iqr = lower - iqr,
     max_iqr = upper + iqr,
@@ -135,8 +136,18 @@ dbplot_boxplot <- function(data, x, var, coef = 1.5) {
   )
 
   colnames(df) <- c(
-    "x", "n", "lower", "middle", "upper", "max_raw", "min_raw",
-    "iqr", "min_iqr", "max_iqr", "ymax", "ymin"
+    "x",
+    "n",
+    "lower",
+    "middle",
+    "upper",
+    "max_raw",
+    "min_raw",
+    "iqr",
+    "min_iqr",
+    "max_iqr",
+    "ymax",
+    "ymin"
   )
 
   ggplot(df) +
@@ -156,7 +167,20 @@ dbplot_boxplot <- function(data, x, var, coef = 1.5) {
 }
 
 globalVariables(c(
-  "upper", "ymax", "weight", "x_", "y", "aes", "ymin", "lower",
-  "middle", "upper", "iqr", "max_raw", "max_iqr", "min_raw",
-  "min_iqr", "percentile_approx"
+  "upper",
+  "ymax",
+  "weight",
+  "x_",
+  "y",
+  "aes",
+  "ymin",
+  "lower",
+  "middle",
+  "upper",
+  "iqr",
+  "max_raw",
+  "max_iqr",
+  "min_raw",
+  "min_iqr",
+  "percentile_approx"
 ))

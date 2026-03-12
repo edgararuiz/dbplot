@@ -41,7 +41,14 @@
 #' faithful %>%
 #'   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
 #' @export
-db_compute_raster <- function(data, x, y, fill = n(), resolution = 100, complete = FALSE) {
+db_compute_raster <- function(
+  data,
+  x,
+  y,
+  fill = n(),
+  resolution = 100,
+  complete = FALSE
+) {
   x <- enquo(x)
   y <- enquo(y)
   fillname <- enquo(fill)
@@ -84,13 +91,24 @@ db_compute_raster <- function(data, x, y, fill = n(), resolution = 100, complete
 
 #' @rdname db_compute_raster
 #' @export
-db_compute_raster2 <- function(data, x, y, fill = n(), resolution = 100, complete = FALSE) {
+db_compute_raster2 <- function(
+  data,
+  x,
+  y,
+  fill = n(),
+  resolution = 100,
+  complete = FALSE
+) {
   x <- enquo(x)
   y <- enquo(y)
   fill <- enquo(fill)
   cr <- db_compute_raster(
-    data, !!x, !!y,
-    !!fill, resolution, complete
+    data,
+    !!x,
+    !!y,
+    !!fill,
+    resolution,
+    complete
   )
   size_x <- bin_size(cr, !!x)
   size_y <- bin_size(cr, !!y)
@@ -152,7 +170,14 @@ db_compute_raster2 <- function(data, x, y, fill = n(), resolution = 100, complet
 #' \code{\link{dbplot_histogram}}
 #'
 #' @export
-dbplot_raster <- function(data, x, y, fill = n(), resolution = 100, complete = FALSE) {
+dbplot_raster <- function(
+  data,
+  x,
+  y,
+  fill = n(),
+  resolution = 100,
+  complete = FALSE
+) {
   x <- enexpr(x)
   y <- enexpr(y)
   fillname <- enexpr(fill)

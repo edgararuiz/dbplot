@@ -37,10 +37,15 @@ db_bin <- function(var, bins = 30, binwidth = NULL) {
     bins <- expr(as.integer(!!range / !!binwidth))
   }
 
-  bin_number <- expr(as.integer(floor((!!var - min(!!var, na.rm = TRUE)) / !!binwidth)))
+  bin_number <- expr(as.integer(floor(
+    (!!var - min(!!var, na.rm = TRUE)) / !!binwidth
+  )))
 
-  expr(((!!binwidth) *
-    ifelse(!!bin_number == !!bins, !!bin_number - 1, !!bin_number)) + min(!!var, na.rm = TRUE))
+  expr(
+    ((!!binwidth) *
+      ifelse(!!bin_number == !!bins, !!bin_number - 1, !!bin_number)) +
+      min(!!var, na.rm = TRUE)
+  )
 }
 
 bin_size <- function(.data, field) {
