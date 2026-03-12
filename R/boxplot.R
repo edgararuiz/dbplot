@@ -51,6 +51,7 @@ calc_boxplot <- function(res, var) {
   UseMethod("calc_boxplot")
 }
 
+#' @exportS3Method
 calc_boxplot.tbl <- function(res, var) {
   summarise(
     res,
@@ -63,6 +64,7 @@ calc_boxplot.tbl <- function(res, var) {
   )
 }
 
+#' @exportS3Method
 calc_boxplot.tbl_spark <- function(res, var) {
   calc_boxplot_sparklyr(res, var)
 }
@@ -79,6 +81,7 @@ calc_boxplot_sparklyr <- function(res, var) {
   )
 }
 
+#' @exportS3Method
 `calc_boxplot.tbl_Microsoft SQL Server` <- function(res, var) {
   calc_boxplot_mssql(res, var)
 }
@@ -119,11 +122,11 @@ calc_boxplot_mssql <- function(res, var) {
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,
 #'  \code{\link{dbplot_raster}}, \code{\link{dbplot_histogram}}
 #'
-#' @export
-#'
+#' @examples
 #' mtcars %>%
 #'   dbplot_boxplot(am, mpg)
 #'
+#' @export
 dbplot_boxplot <- function(data, x, var, coef = 1.5) {
   x <- enquo(x)
   var <- enquo(var)

@@ -13,9 +13,9 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Add `testthat (>= 3.0.0)` version requirement
 - [x] Add `lifecycle` to Suggests
 - [x] Remove `magrittr` from Imports (using native pipe)
-- [x] Update RoxygenNote from 7.0.2 to 7.3.2
-- [ ] Consider adding `cli` to Imports for better messages
-- [ ] Run `devtools::document()` to regenerate documentation
+- [x] Update RoxygenNote from 7.0.2 to 7.3.3
+- [x] Add `cli` to Imports for better messages
+- [x] Run `devtools::document()` to regenerate documentation
 
 ### GitHub Actions
 - [ ] Create `.github/workflows/` directory

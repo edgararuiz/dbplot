@@ -10,6 +10,7 @@ Authors@R:
 Depends:
     R (>= 4.1.0)
 Imports:
+    cli,
     dplyr (>= 1.0.0),
     rlang (>= 1.0.0),
     ggplot2 (>= 3.3.0),
@@ -23,5 +24,5 @@ Suggests:
 License: GPL-3
 URL: https://github.com/edgararuiz/dbplot
 BugReports: https://github.com/edgararuiz/dbplot/issues
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Encoding: UTF-8
