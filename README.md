@@ -52,8 +52,9 @@ pak::pak("edgararuiz/dbplot")
 
 ## Example
 
-In addition to database connections, the functions work with `sparklyr`.
-A local `RSQLite` database will be used for the examples in this README.
+The functions work with standard database connections (via DBI/dbplyr)
+and with Spark connections (via sparklyr). A local `RSQLite` database
+will be used for the examples in this README.
 
 ``` r
 library(DBI)
@@ -162,8 +163,8 @@ db_flights |>
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" alt="" width="100%" />
 
-- Pass a formula, and column name, that will be operated for each value
-  in the discrete variable
+- Pass an aggregation formula that will be calculated for each value in
+  the discrete variable
 
 ``` r
 db_flights |>

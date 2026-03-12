@@ -44,7 +44,7 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data and then `ggplot2`
+#' Uses dplyr operations to aggregate data and then `ggplot2`
 #' to create the plot.  Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables
@@ -124,7 +124,7 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to aggregate data and then `ggplot2`
+#' Uses dplyr operations to aggregate data and then `ggplot2`
 #' to create a line plot.  Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables

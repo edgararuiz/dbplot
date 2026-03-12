@@ -7,7 +7,7 @@
 db_compute_boxplot(data, x, var, coef = 1.5)
 }
 \arguments{
-\item{data}{A table (tbl), can already contain additional grouping vars specified}
+\item{data}{A table (tbl) that can already contain grouping variables}
 
 \item{x}{A discrete variable in which to group the boxplots}
 

@@ -18,8 +18,8 @@ db_compute_raster2(data, x, y, fill = n(), resolution = 100, complete = FALSE)
 
 \item{fill}{The aggregation formula. Defaults to count (n)}
 
-\item{resolution}{The number of bins created by variable. The highest the number, the more records
-can be potentially imported from the source}
+\item{resolution}{The number of bins created per variable. The higher the number, the more records
+will be imported from the source}
 
 \item{complete}{Uses tidyr::complete to include empty bins. Inserts value of 0.}
 }

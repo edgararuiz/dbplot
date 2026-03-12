@@ -21,7 +21,7 @@
 #' Note that this function supports input tbl that already contains
 #' grouping variables. This can be useful when creating faceted boxplots.
 #'
-#' @param data A table (tbl), can already contain additional grouping vars specified
+#' @param data A table (tbl) that can already contain grouping variables
 #' @param x A discrete variable in which to group the boxplots
 #' @param var A continuous variable
 #' @param coef Length of the whiskers as multiple of IQR. Defaults to 1.5
