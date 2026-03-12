@@ -28,10 +28,10 @@ library(dplyr)
 # Uses the default 30 bins
 mtcars |>
   group_by(x = !!db_bin(mpg)) |>
-  tally()
+  count()
 
 # Uses binwidth which overrides bins
 mtcars |>
   group_by(x = !!db_bin(mpg, binwidth = 10)) |>
-  tally()
+  count()
 }
