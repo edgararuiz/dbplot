@@ -1,8 +1,8 @@
-#' Calculates a histogram bins
+#' Calculate histogram bins
 #'
 #' @description
 #'
-#' Uses very generic dplyr code to create histogram bins.
+#' Uses dplyr operations to create histogram bins.
 #' Because of this approach,
 #' the calculations automatically run inside the database if `data` has
 #' a database or sparklyr connection. The `class()` of such tables

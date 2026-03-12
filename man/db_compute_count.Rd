@@ -16,10 +16,10 @@ db_compute_count(data, x, ..., y = n())
 \item{y}{The aggregation formula. Defaults to count (n)}
 }
 \description{
-Uses very generic dplyr code to aggregate data.  Because of this approach,
+Uses dplyr operations to aggregate data. Because of this approach,
 the calculations automatically run inside the database if `data` has
 a database or sparklyr connection. The `class()` of such tables
-in R are: tbl_sql, tbl_dbi, tbl_sql
+in R are: tbl_sql, tbl_dbi, tbl_spark
 }
 \examples{
 
