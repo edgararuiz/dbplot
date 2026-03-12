@@ -81,7 +81,7 @@ calc_boxplot_sparklyr <- function(res, var) {
   )
 }
 
-#' @exportS3Method
+#' @rawNamespace S3method(calc_boxplot,"tbl_Microsoft SQL Server")
 `calc_boxplot.tbl_Microsoft SQL Server` <- function(res, var) {
   calc_boxplot_mssql(res, var)
 }
