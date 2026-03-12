@@ -2,6 +2,7 @@
 ^\.claude$
 ^CODE_OF_CONDUCT\.md$
 ^CONTRIBUTING\.md$
+^CLAUDE\.md$
 ^pkgdown$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -16,6 +17,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^README\.Rmd$
+^README\.html$
 ^README-.*\.png$
 ^README_files$
 ^.*\.log$
