@@ -13,7 +13,7 @@ db_compute_bins(data, x, bins = 30, binwidth = NULL)
 
 \item{bins}{Number of bins. Defaults to 30.}
 
-\item{binwidth}{Single value that sets the side of the bins, it overrides bins}
+\item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
 \description{
 Uses dplyr operations to create histogram bins.

@@ -22,10 +22,10 @@ Leverages `dplyr` to process the calculations of a plot inside a
 database. This package provides helper functions that abstract the work
 at three levels:
 
-1.  Functions that ouput a `ggplot2` object
-2.  Functions that outputs a `data.frame` object with the calculations
-3.  Creates the formula needed to calculate bins for a Histogram or a
-    Raster plot
+1.  Functions that output a `ggplot2` object
+2.  Functions that output a `data.frame` object with the calculations
+3.  Functions that create formulas for calculating bins for a Histogram
+    or a Raster plot
 
 ## Installation
 
@@ -35,7 +35,7 @@ You can install the released version from CRAN:
 install.packages("dbplot")
 ```
 
-Or the the development version from GitHub, using the `remotes` package:
+Or the development version from GitHub, using the `remotes` package:
 
 ``` r
 install.packages("remotes")

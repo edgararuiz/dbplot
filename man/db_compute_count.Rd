@@ -11,7 +11,7 @@ db_compute_count(data, x, ..., y = n())
 
 \item{x}{A discrete variable}
 
-\item{...}{A set of named or unamed aggregations}
+\item{...}{A set of named or unnamed aggregations}
 
 \item{y}{The aggregation formula. Defaults to count (n)}
 }

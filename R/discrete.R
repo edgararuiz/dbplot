@@ -9,7 +9,7 @@
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
@@ -52,7 +52,7 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
@@ -137,7 +137,7 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #'
 #' @param data A table (tbl)
 #' @param x A discrete variable
-#' @param ... A set of named or unamed aggregations
+#' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
