@@ -1,5 +1,7 @@
 ^\.github$
 ^\.claude$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^pkgdown$
 ^.*\.Rproj$
 ^\.Rproj\.user$

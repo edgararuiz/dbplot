@@ -94,6 +94,21 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Knit README.Rmd to regenerate README.md with updated content
 - [x] Verify all README figures render correctly
 
+
+### Man Pages
+- [x] Regenerate all .Rd files with `devtools::document()`
+- [x] Review generated documentation
+- [x] Check for broken links (R CMD check passed)
+- [x] Ensure examples all run (R CMD check passed)
+
+### rlang Review
+- [x] Audit all tidy evaluation code (see .github/RLANG_REVIEW.md)
+- [x] Consider using `{{ }}` where appropriate (current patterns preferred)
+- [x] Ensure all `!!`, `!!!`, and `:=` usage is correct (all verified)
+- [x] Test with rlang 1.0+ changes (package builds and tests pass)
+- [x] Document any breaking changes in tidy eval patterns (none - fully compatible)
+- [x] Verify no deprecated rlang APIs (UQ, UQS, quo_text, lang_*) - all clear ✅
+
 ### Expand Test Coverage
 - [ ] Add tests for database connections (SQLite)
 - [ ] Add error handling tests:
@@ -110,12 +125,6 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [ ] Test boxplot with different backends (mock)
 - [ ] Run `covr::package_coverage()` and aim for >70%
 
-### Man Pages
-- [x] Regenerate all .Rd files with `devtools::document()`
-- [x] Review generated documentation
-- [x] Check for broken links (R CMD check passed)
-- [x] Ensure examples all run (R CMD check passed)
-
 ## Phase 4: Modern Practices 🚀
 
 ### Lifecycle Management
@@ -125,22 +134,16 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [ ] Document minimum versions and compatibility
 
 ### Community Documentation
-- [ ] Add `CODE_OF_CONDUCT.md` (use `usethis::use_code_of_conduct()`)
-- [ ] Add `CONTRIBUTING.md` with:
-  - [ ] Development setup instructions
-  - [ ] Testing guidelines
-  - [ ] Code style guidelines
-  - [ ] PR process
-- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md`
-- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md`
-- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md`
-
-### rlang Review
-- [ ] Audit all tidy evaluation code
-- [ ] Consider using `{{ }}` where appropriate
-- [ ] Ensure all `!!`, `!!!`, and `:=` usage is correct
-- [ ] Test with rlang 1.0+ changes
-- [ ] Document any breaking changes in tidy eval patterns
+- [x] Add `CODE_OF_CONDUCT.md` (Contributor Covenant v2.1)
+- [x] Add `CONTRIBUTING.md` with:
+  - [x] Development setup instructions
+  - [x] Testing guidelines
+  - [x] Code style guidelines
+  - [x] PR process
+- [x] Create `.github/ISSUE_TEMPLATE/bug_report.md`
+- [x] Create `.github/ISSUE_TEMPLATE/feature_request.md`
+- [x] Create `.github/PULL_REQUEST_TEMPLATE.md`
+- [x] Update `.Rbuildignore` to exclude community docs from package build
 
 ### pkgdown Site
 - [ ] Review `_pkgdown.yml` configuration
