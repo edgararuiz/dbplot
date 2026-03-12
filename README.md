@@ -1,8 +1,7 @@
 
 # dbplot <img src="man/figures/logo.png" align="right" alt="" width="220" />
 
-[![Build
-Status](https://travis-ci.org/edgararuiz/dbplot.svg?branch=master)](https://travis-ci.org/edgararuiz/dbplot)
+[![R-CMD-check](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dbplot)](https://cran.r-project.org/package=dbplot)
 [![Coverage
 status](https://codecov.io/gh/edgararuiz/dbplot/branch/master/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=master)

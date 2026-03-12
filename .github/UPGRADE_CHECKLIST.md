@@ -49,13 +49,13 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Run `devtools::test()` to verify all pass (29 tests passing)
 
 ### GitHub Actions
-- [ ] Create `.github/workflows/` directory
-- [ ] Add `R-CMD-check.yaml` (multi-platform testing)
-- [ ] Add `test-coverage.yaml` (codecov integration)
-- [ ] Add `pkgdown.yaml` (documentation site)
-- [ ] Update `.Rbuildignore` to include `.github/`
-- [ ] Remove `.travis.yml`
-- [ ] Test all workflows run successfully
+- [x] Create `.github/workflows/` directory
+- [x] Add `R-CMD-check.yaml` (multi-platform testing: macOS, Windows, Ubuntu with R devel/release/oldrel)
+- [x] Add `test-coverage.yaml` (codecov integration)
+- [x] Add `pkgdown.yaml` (documentation site)
+- [x] Update `.Rbuildignore` to include `.github/` (already done)
+- [x] Remove `.travis.yml`
+- [ ] Test all workflows run successfully (will run on next push to GitHub)
 
 ## Phase 2: Code Quality 🔧
 
