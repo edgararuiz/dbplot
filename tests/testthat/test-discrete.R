@@ -1,5 +1,3 @@
-context("discrete")
-
 test_that("Multiple aggregations are supported", {
   expect_equal(
     ncol(db_compute_count(mtcars,
@@ -16,8 +14,8 @@ test_that("Multiple aggregations work with bar plots", {
     am,
     sum_wt = sum(wt), sum_mpg = sum(mpg)
   )
-  expect_is(x, "list")
-  expect_is(x[[1]], "ggplot")
+  expect_type(x, "list")
+  expect_s3_class(x[[1]], "ggplot")
 })
 
 test_that("Multiple aggregations work with line plots", {
@@ -25,6 +23,6 @@ test_that("Multiple aggregations work with line plots", {
     am,
     sum_wt = sum(wt), sum_mpg = sum(mpg)
   )
-  expect_is(x, "list")
-  expect_is(x[[1]], "ggplot")
+  expect_type(x, "list")
+  expect_s3_class(x[[1]], "ggplot")
 })

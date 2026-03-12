@@ -1,7 +1,5 @@
-context("raster")
-
 test_that("Setting the complete argument returns a ggplot", {
-  expect_is(dbplot_raster(mtcars, wt, mpg, complete = TRUE), "ggplot")
+  expect_s3_class(dbplot_raster(mtcars, wt, mpg, complete = TRUE), "ggplot")
 })
 
 

@@ -35,17 +35,18 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] `R/raster.R` line 153: "sourd" → "source"
 
 ### Test Suite Modernization
-- [ ] Add `edition: 3` to `tests/testthat.R`
-- [ ] `test-boxplots.R`: Remove `context("boxplots")` (line 1)
-- [ ] `test-boxplots.R`: Replace `expect_is()` with `expect_s3_class()` (lines 4, 13, 19)
-- [ ] `test-dbbin.R`: Remove `context("db_bin")` (line 1)
-- [ ] `test-dbplots.R`: Remove `context("dbplots")` (line 1)
-- [ ] `test-dbplots.R`: Replace `expect_is()` with `expect_s3_class()` (lines 4-9, 20, 29)
-- [ ] `test-discrete.R`: Remove `context("discrete")` (line 1)
-- [ ] `test-discrete.R`: Replace `expect_is()` with `expect_s3_class()` (lines 19, 20, 28, 29)
-- [ ] `test-raster.R`: Remove `context("raster")` (line 1)
-- [ ] `test-raster.R`: Replace `expect_is()` with `expect_s3_class()` (line 4)
-- [ ] Run `devtools::test()` to verify all pass
+- [x] Add `edition: 3` to `tests/testthat.R` using `local_edition(3)`
+- [x] `test-boxplots.R`: Remove `context("boxplots")` (line 1)
+- [x] `test-boxplots.R`: Replace `expect_is()` with `expect_s3_class()` (line 4)
+- [x] `test-dbbin.R`: Remove `context("db_bin")` (line 1)
+- [x] `test-dbplots.R`: Remove `context("dbplots")` (line 1)
+- [x] `test-dbplots.R`: Replace `expect_is()` with `expect_s3_class()` (lines 4-8)
+- [x] `test-dbplots.R`: Fix grammar "A no warnings" → "No warnings" (line 11)
+- [x] `test-discrete.R`: Remove `context("discrete")` (line 1)
+- [x] `test-discrete.R`: Replace `expect_is()` with `expect_s3_class()` or `expect_type()` (lines 19-20, 28-29)
+- [x] `test-raster.R`: Remove `context("raster")` (line 1)
+- [x] `test-raster.R`: Replace `expect_is()` with `expect_s3_class()` (line 4)
+- [x] Run `devtools::test()` to verify all pass (29 tests passing)
 
 ### GitHub Actions
 - [ ] Create `.github/workflows/` directory

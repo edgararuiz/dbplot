@@ -1,5 +1,3 @@
-context("db_bin")
-
 test_that(
   "Correct binwidth formula is returned",
   expect_equal(
