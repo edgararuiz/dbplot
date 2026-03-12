@@ -17,14 +17,18 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Add `cli` to Imports for better messages
 - [x] Run `devtools::document()` to regenerate documentation
 
-### GitHub Actions
-- [ ] Create `.github/workflows/` directory
-- [ ] Add `R-CMD-check.yaml` (multi-platform testing)
-- [ ] Add `test-coverage.yaml` (codecov integration)
-- [ ] Add `pkgdown.yaml` (documentation site)
-- [ ] Update `.Rbuildignore` to include `.github/`
-- [ ] Remove `.travis.yml`
-- [ ] Test all workflows run successfully
+### Migrate to Native Pipe
+- [ ] Delete or update `R/utils-pipe.R` (removes %>% re-export)
+- [ ] Update all examples in .R files to use |> instead of %>%
+- [ ] Update README.md examples to use |> instead of %>%
+- [ ] Search for any vignettes using %>%
+- [ ] Update NEWS.md to note breaking change (no longer exports %>%)
+- [ ] Test all examples still work
+
+### Fix Typos
+- [ ] `test-raster.R` line 8: "complte" → "complete"
+- [ ] `test-raster.R` line 23: "rignt" → "right"
+- [ ] `R/raster.R` line 153: "sourd" → "source"
 
 ### Test Suite Modernization
 - [ ] Add `edition: 3` to `tests/testthat.R`
@@ -39,20 +43,16 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [ ] `test-raster.R`: Replace `expect_is()` with `expect_s3_class()` (line 4)
 - [ ] Run `devtools::test()` to verify all pass
 
+### GitHub Actions
+- [ ] Create `.github/workflows/` directory
+- [ ] Add `R-CMD-check.yaml` (multi-platform testing)
+- [ ] Add `test-coverage.yaml` (codecov integration)
+- [ ] Add `pkgdown.yaml` (documentation site)
+- [ ] Update `.Rbuildignore` to include `.github/`
+- [ ] Remove `.travis.yml`
+- [ ] Test all workflows run successfully
+
 ## Phase 2: Code Quality 🔧
-
-### Migrate to Native Pipe
-- [ ] Delete or update `R/utils-pipe.R` (removes %>% re-export)
-- [ ] Update all examples in .R files to use |> instead of %>%
-- [ ] Update README.md examples to use |> instead of %>%
-- [ ] Search for any vignettes using %>%
-- [ ] Update NEWS.md to note breaking change (no longer exports %>%)
-- [ ] Test all examples still work
-
-### Fix Typos
-- [ ] `test-raster.R` line 8: "complte" → "complete"
-- [ ] `test-raster.R` line 23: "rignt" → "right"
-- [ ] `R/raster.R` line 153: "sourd" → "source"
 
 ### Consolidate globalVariables
 - [ ] Move all `globalVariables()` to single location in `R/dbplot.R`

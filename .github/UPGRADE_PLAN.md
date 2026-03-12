@@ -31,68 +31,86 @@ The `dbplot` package (v0.3.3) requires significant modernization to align with c
 ### Phase 1: Critical Infrastructure (High Priority)
 **Goal**: Get the package building and testing in modern environment
 
-1. **Update DESCRIPTION Dependencies**
+1. **Update DESCRIPTION Dependencies** ✅ COMPLETED
    - Bump R requirement: 3.1 → 4.1.0
    - Update dplyr: 0.7 → 1.0.0
    - Update rlang: 0.3 → 1.0.0
    - Update dbplyr: 1.4.0 → 2.0.0
-   - Update RoxygenNote: 7.0.2 → 7.3+
+   - Update RoxygenNote: 7.0.2 → 7.3.3
    - Remove magrittr (use native |> pipe instead)
+   - Add cli for better error messages
 
-2. **Migrate to GitHub Actions**
-   - Remove `.travis.yml`
-   - Create `.github/workflows/R-CMD-check.yaml`
-   - Create `.github/workflows/test-coverage.yaml`
-   - Create `.github/workflows/pkgdown.yaml`
+2. **Necessary Code Quality Improvements**
+   - Migrate from %>% to |> in all examples and documentation
+   - Fix typos in code and tests (rignt → right, complte → complete, sourd → source)
 
 3. **Modernize Test Suite**
    - Remove all `context()` calls
    - Replace `expect_is()` with `expect_s3_class()`
    - Add `edition: 3` to `tests/testthat.R`
-   - Fix typos (rignt → right, complte → complete)
+
+4. **Migrate to GitHub Actions**
+   - Remove `.travis.yml`
+   - Create `.github/workflows/R-CMD-check.yaml`
+   - Create `.github/workflows/test-coverage.yaml`
+   - Create `.github/workflows/pkgdown.yaml`
 
 ### Phase 2: Code Quality (Medium Priority)
-**Goal**: Improve maintainability and code quality
+**Goal**: Improve maintainability and code consistency
 
-4. **Code Quality Improvements**
+5. **Code Quality Improvements**
    - Consolidate `globalVariables()` declarations
    - Fix enquo/enexpr inconsistencies
    - Add input validation
-   - Fix typos in comments and docs
-   - Migrate from %>% to |> in all examples and documentation
 
-5. **Documentation Updates**
+6. **Documentation Updates**
    - Update README badges
    - Fix deprecated URLs:
      - `db.rstudio.com` → `solutions.posit.co`
      - `spark.rstudio.com` → `spark.posit.co`
    - Regenerate all `.Rd` files
 
-6. **Expand Test Coverage**
+### Phase 3: Documentation & Testing (Medium Priority)
+**Goal**: Improve documentation and expand test coverage
+
+7. **Update README and Documentation**
+   - Update README badges (Travis → GitHub Actions)
+   - Update links to Posit URLs
+   - Ensure all examples run successfully
+
+8. **Expand Test Coverage**
    - Add database connection tests
    - Test edge cases and error conditions
    - Add tests for grouped data
-   - Target >80% coverage
+   - Target >70% coverage
 
-### Phase 3: Modern R Practices (Lower Priority)
+### Phase 4: Modern R Practices (Lower Priority)
 **Goal**: Align with current R ecosystem best practices
 
-7. **Add Lifecycle Management**
+9. **Add Lifecycle Management**
    - Add lifecycle package
    - Mark deprecated/superseded functions
    - Add package-level documentation
 
-8. **Community Guidelines**
-   - Add CODE_OF_CONDUCT.md
-   - Add CONTRIBUTING.md
-   - Add GitHub issue/PR templates
+10. **Community Guidelines**
+    - Add CODE_OF_CONDUCT.md
+    - Add CONTRIBUTING.md
+    - Add GitHub issue/PR templates
 
-9. **Review rlang Patterns**
-   - Audit tidy evaluation usage
-   - Consider modern `{{ }}` syntax
-   - Ensure compatibility with rlang 1.0+
+11. **Review rlang Patterns**
+    - Audit tidy evaluation usage
+    - Consider modern `{{ }}` syntax
+    - Ensure compatibility with rlang 1.0+
 
-10. **Prepare Release**
+12. **Review and Update pkgdown Site**
+    - Review _pkgdown.yml configuration
+    - Test site builds correctly
+    - Update styling if needed
+
+### Phase 5: Release Preparation
+**Goal**: Prepare for CRAN submission
+
+13. **Prepare Release**
     - Update version from 0.3.3.9000 to 0.4.0
     - Update NEWS.md for v0.4.0
     - Update cran-comments.md
@@ -189,22 +207,29 @@ rhub::check_for_cran()
 ## Timeline Estimate
 
 - **Phase 1** (Critical): 4-6 hours
-  - Dependencies: 1 hour
-  - GitHub Actions: 2 hours
-  - Test modernization: 1-3 hours
+  - Dependencies: ✅ 1 hour (COMPLETED)
+  - Code quality fixes: 2 hours (pipe migration, typos)
+  - Test modernization: 1-2 hours
+  - GitHub Actions: 1-2 hours
 
-- **Phase 2** (Quality): 4-6 hours
-  - Code cleanup: 2 hours
-  - Documentation: 2 hours
-  - Test expansion: 2-4 hours
+- **Phase 2** (Quality): 2-3 hours
+  - Code consistency: 1-2 hours
+  - Documentation fixes: 1 hour
 
-- **Phase 3** (Polish): 2-4 hours
+- **Phase 3** (Documentation & Testing): 3-4 hours
+  - README updates: 1 hour
+  - Test expansion: 2-3 hours
+
+- **Phase 4** (Modern Practices): 2-4 hours
   - Lifecycle: 1 hour
   - Community docs: 1 hour
   - rlang review: 1-2 hours
-  - Release prep: 1 hour
+  - pkgdown: 1 hour
 
-**Total Estimate**: 10-16 hours
+- **Phase 5** (Release): 1-2 hours
+  - Final prep and testing
+
+**Total Estimate**: 12-19 hours (1 hour completed)
 
 ## Success Criteria
 

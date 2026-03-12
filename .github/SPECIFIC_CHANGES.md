@@ -1,11 +1,11 @@
 # Specific Code Changes Required
 
-This document lists the exact changes needed in each file.
+This document lists the exact changes needed in each file, organized by phase.
 
-## High Priority Files
+## Phase 1: Critical Infrastructure
 
-### DESCRIPTION
-**Current issues**: Old dependency versions, old RoxygenNote
+### DESCRIPTION ✅ COMPLETED
+**Issues**: Old dependency versions, old RoxygenNote
 
 ```diff
  Package: dbplot
@@ -230,14 +230,16 @@ This document lists the exact changes needed in each file.
  )
 ```
 
-## Pipe Migration (All Files)
+## Necessary Code Quality Improvements (Phase 1)
 
-### R/utils-pipe.R
+### Pipe Migration
+
+#### R/utils-pipe.R
 **Action**: DELETE this file entirely
 
 The package no longer re-exports `%>%`. Users should use R's native `|>` pipe (available in R >= 4.1.0) or load magrittr themselves.
 
-### All .R files with examples
+#### All .R files with examples
 **Pattern to replace**: `%>%` → `|>`
 
 Examples will need updates in:
@@ -255,7 +257,7 @@ Example changes:
  #'   db_compute_bins(mpg)
 ```
 
-### README.md
+#### README.md (Phase 3 - will update with badges)
 **Pattern to replace**: `%>%` → `|>`
 
 Approximately 20+ instances throughout the README. Example:
@@ -266,7 +268,25 @@ Approximately 20+ instances throughout the README. Example:
    dbplot_histogram(distance)
 ```
 
-### Breaking Change Note for NEWS.md
+### Typo Fixes
+
+#### tests/testthat/test-raster.R
+```diff
+-test_that("The correct number of rows are returned when using complte", {
++test_that("The correct number of rows are returned when using complete", {
+
+-test_that("Compute raster 2 returns the rignt number of rows", {
++test_that("Compute raster 2 returns the right number of rows", {
+```
+
+#### R/raster.R
+```diff
+ #' @param resolution The number of bins created by variable. The highest the number, the more records
+-#' can be potentially imported from the sourd
++#' can be potentially imported from the source
+```
+
+### NEWS.md Breaking Changes Entry
 
 Add to NEWS.md:
 ```markdown
@@ -281,11 +301,15 @@ Add to NEWS.md:
 ## Improvements
 
 * Updated minimum R version to 4.1.0
-* Updated all package dependencies to modern versions
+* Updated all package dependencies to modern versions (dplyr >= 1.0.0, rlang >= 1.0.0)
+* Added cli package for better error messages
 * All examples now use native pipe `|>` instead of `%>%`
+* Fixed typos in code and documentation
 ```
 
-## Medium Priority Files
+## Phase 2: Code Quality
+
+### Code Consistency
 
 ### R/dbplot.R
 **Current issues**: Should consolidate all globalVariables here
@@ -431,19 +455,6 @@ Add to NEWS.md:
 -))
 ```
 
-### R/raster.R
-**Current issues**: Typo in documentation
-
-```diff
- #' @param x A continuous variable
- #' @param y A continuous variable
- #' @param fill The aggregation formula. Defaults to count (n)
- #' @param resolution The number of bins created by variable. The highest the number, the more records
--#' can be potentially imported from the sourd
-+#' can be potentially imported from the source
- #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
-```
-
 ### R/discrete.R
 **Current issues**: Wrong title in documentation
 
@@ -457,8 +468,10 @@ Add to NEWS.md:
  #' to create a line plot.  Because of this approach,
 ```
 
+## Phase 3: Documentation & Testing
+
 ### README.md
-**Current issues**: Old badges, deprecated URLs
+**Current issues**: Old badges, deprecated URLs, uses %>% pipe
 
 ```diff
  # dbplot <img src="man/figures/logo.png" align="right" alt="" width="220" />
@@ -485,23 +498,27 @@ Add to NEWS.md:
 +    <https://spark.posit.co/>
 ```
 
-## Files to Delete
+## Phase 1: GitHub Actions Setup
+
+### Files to Delete
 
 ```bash
 rm .travis.yml
 rm R/utils-pipe.R  # No longer re-exporting %>%, users should use |>
 ```
 
-## New Files to Create
+### New Files to Create
 
-### .github/workflows/R-CMD-check.yaml
+#### .github/workflows/R-CMD-check.yaml
 Use `usethis::use_github_action("check-standard")` or create manually
 
-### .github/workflows/test-coverage.yaml
+#### .github/workflows/test-coverage.yaml
 Use `usethis::use_github_action("test-coverage")` or create manually
 
-### .github/workflows/pkgdown.yaml
+#### .github/workflows/pkgdown.yaml
 Use `usethis::use_github_action("pkgdown")` or create manually
+
+## Phase 4: Modern Practices
 
 ### CODE_OF_CONDUCT.md
 Use `usethis::use_code_of_conduct()`
@@ -542,14 +559,31 @@ if (file.exists("README.Rmd")) {
 pkgdown::build_site()
 ```
 
-## Summary of Changes by Category
+## Summary of Changes by Phase
 
-**Test Files**: 6 files, ~30 lines changed
-**R Source Files**: 5 files, ~50 lines changed (plus pipe migration)
-**Documentation**: 2 files, ~10 lines changed (plus pipe migration)
-**Infrastructure**: 3 new workflow files, 2 deleted files (travis.yml, utils-pipe.R)
-**Pipe Migration**: All examples in R files, README, docs (~50+ instances)
-**Total Effort**: ~150 line changes across 18+ files
+**Phase 1: Critical Infrastructure**
+- Dependencies: DESCRIPTION updated ✅
+- Pipe migration: ~50+ instances across R files, README, docs
+- Typo fixes: 3 files
+- Test modernization: 6 test files, ~30 lines
+- GitHub Actions: 3 new workflow files, 2 deleted files
+
+**Phase 2: Code Quality**
+- globalVariables consolidation: 3 files
+- Code consistency: 2-3 files
+- Documentation fixes: 2 files
+
+**Phase 3: Documentation & Testing**
+- README updates: 1 file (~10 lines)
+- Test expansion: New test files to be created
+- Man pages: Already regenerated ✅
+
+**Phase 4: Modern Practices**
+- Community docs: 2-3 new files
+- Package documentation: 1 new file
+- pkgdown review: Configuration updates
+
+**Total Estimated Effort**: ~150-200 line changes across 20+ files
 
 ---
 
