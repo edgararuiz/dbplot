@@ -10,6 +10,7 @@
 #'
 #' Requires database support for percentile/quantile functions. Confirmed to work with:
 #' \itemize{
+#'   \item DuckDB (recommended for local examples) - uses quantile()
 #'   \item Spark/Hive (via sparklyr) - uses percentile_approx()
 #'   \item SQL Server (2012+) - uses PERCENTILE_CONT()
 #'   \item PostgreSQL (9.4+) - uses percentile_cont()

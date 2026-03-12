@@ -176,6 +176,7 @@ Boxplot functions require database support for percentile/quantile calculations.
 
 **Supported databases:**
 
+- DuckDB (recommended for local examples) - uses `quantile()`
 - Spark/Hive (via sparklyr) - uses `percentile_approx()`
 - SQL Server (2012+) - uses `PERCENTILE_CONT()`
 - PostgreSQL (9.4+) - uses `percentile_cont()`
@@ -187,6 +188,13 @@ Here is an example using `dbplot_boxplot()` with a local data frame:
 
 ```{r}
 nycflights13::flights |>
+  dbplot_boxplot(origin, distance)
+```
+
+Boxplot also works with database connections that support quantile functions:
+
+```{r}
+db_flights |>
   dbplot_boxplot(origin, distance)
 ```
 

@@ -42,6 +42,7 @@ calc_boxplot.tbl_Microsoft SQL Server <- function(res, var) {
 
 | Database    | Percentile Function | Available Since | dbplyr Support |
 |-------------|---------------------|-----------------|----------------|
+| DuckDB      | `quantile()`        | All versions   | ✅ Yes         |
 | PostgreSQL  | `percentile_cont()` | 9.4+ (2014)    | ✅ Yes         |
 | SQL Server  | `PERCENTILE_CONT()` | 2012+          | ✅ Yes         |
 | Oracle      | `PERCENTILE_CONT()` | 9i+ (2001)     | ✅ Yes         |
@@ -72,23 +73,30 @@ calc_boxplot.tbl_Microsoft SQL Server <- function(res, var) {
 
 Based on code implementation and SQL capabilities:
 
-1. **Spark/Hive** (via sparklyr)
+1. **DuckDB** (all versions)
+   - Native `quantile()` function support
+   - **10-100x faster than SQLite** for analytics workloads
+   - **Recommended for local examples** - no server setup required
+   - Uses generic `calc_boxplot.tbl()` method
+   - Columnar storage, optimized for analytics
+
+2. **Spark/Hive** (via sparklyr)
    - Uses `percentile_approx()`
    - Dedicated S3 method
    - Well-tested
 
-2. **SQL Server** (2012+)
+3. **SQL Server** (2012+)
    - Uses `PERCENTILE_CONT()` via `quantile()` translation
    - Dedicated S3 method with special grouping handling
    - Explicitly mentioned in code
 
-3. **PostgreSQL** (9.4+)
+4. **PostgreSQL** (9.4+)
    - Has `percentile_cont()` function
    - dbplyr translates `quantile()` → `percentile_cont()`
    - Mentioned in README as tested
    - Uses generic `calc_boxplot.tbl()` method
 
-4. **Oracle** (9i+)
+5. **Oracle** (9i+)
    - Has `PERCENTILE_CONT()` function
    - dbplyr translates `quantile()` → `PERCENTILE_CONT()`
    - Mentioned in README as tested
@@ -160,6 +168,7 @@ If dbplyr doesn't have a translation for `quantile()`, it will either:
 **Recommended**:
 ```r
 #' Requires database support for percentile/quantile functions. Confirmed to work with:
+#' - DuckDB (recommended for local examples) - uses quantile()
 #' - Spark/Hive (via sparklyr) - uses percentile_approx()
 #' - SQL Server (2012+) - uses PERCENTILE_CONT()
 #' - PostgreSQL (9.4+) - uses percentile_cont()
@@ -197,6 +206,7 @@ It has been tested with the following connections:
 Boxplot functions require database support for percentile/quantile calculations.
 
 **Supported databases** (tested):
+- DuckDB (recommended for local examples) - uses `quantile()`
 - Spark/Hive (via sparklyr) - uses `percentile_approx()`
 - SQL Server (2012+) - uses `PERCENTILE_CONT()`
 - PostgreSQL (9.4+) - uses `percentile_cont()`
@@ -266,6 +276,7 @@ calc_boxplot.tbl <- function(res, var) {
 **Root Cause**: Boxplot requires `quantile()` function, which dbplyr translates to database-specific percentile functions. Not all databases have these functions.
 
 **Confirmed Working**:
+- ✅ DuckDB (all versions) - generic implementation, native quantile() support
 - ✅ Spark/Hive (sparklyr) - dedicated implementation
 - ✅ SQL Server 2012+ - dedicated implementation
 - ✅ PostgreSQL 9.4+ - generic implementation, dbplyr translates
