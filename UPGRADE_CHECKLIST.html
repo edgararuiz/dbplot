@@ -107,42 +107,42 @@
 <li><label><input type="checkbox" checked>Add <code>pkgdown.yaml</code> (documentation site)</label></li>
 <li><label><input type="checkbox" checked>Update <code>.Rbuildignore</code> to include <code>.github/</code> (already done)</label></li>
 <li><label><input type="checkbox" checked>Remove <code>.travis.yml</code></label></li>
-<li><label><input type="checkbox">Test all workflows run successfully (will run on next push to GitHub)</label></li>
+<li><label><input type="checkbox" checked>Test all workflows run successfully on GitHub</label></li>
 </ul></div>
 </div>
 <div class="section level2">
 <h2 id="phase-2-code-quality-">Phase 2: Code Quality 🔧<a class="anchor" aria-label="anchor" href="#phase-2-code-quality-"></a></h2>
 <div class="section level3">
 <h3 id="consolidate-globalvariables">Consolidate globalVariables<a class="anchor" aria-label="anchor" href="#consolidate-globalvariables"></a></h3>
-<ul class="task-list"><li><label><input type="checkbox">Move all <code><a href="https://rdrr.io/r/utils/globalVariables.html" class="external-link">globalVariables()</a></code> to single location in <code>R/dbplot.R</code></label></li>
+<ul class="task-list"><li><label><input type="checkbox" checked>Move all <code><a href="https://rdrr.io/r/utils/globalVariables.html" class="external-link">globalVariables()</a></code> to single location in <code>R/dbplot.R</code></label></li>
 <li>
-<label><input type="checkbox">Remove redundant declarations from:</label>
-<ul class="task-list"><li><label><input type="checkbox"><code>R/histogram.R</code> (line 99)</label></li>
-<li><label><input type="checkbox"><code>R/boxplot.R</code> (lines 169-186)</label></li>
+<label><input type="checkbox" checked>Remove redundant declarations from:</label>
+<ul class="task-list"><li><label><input type="checkbox" checked><code>R/histogram.R</code> (line 99)</label></li>
+<li><label><input type="checkbox" checked><code>R/boxplot.R</code> (lines 169-186)</label></li>
 </ul></li>
-<li><label><input type="checkbox">Verify no R CMD check NOTEs about undefined globals</label></li>
+<li><label><input type="checkbox" checked>Verify no R CMD check NOTEs about undefined globals</label></li>
 </ul></div>
 <div class="section level3">
 <h3 id="code-consistency">Code Consistency<a class="anchor" aria-label="anchor" href="#code-consistency"></a></h3>
 <ul class="task-list"><li>
-<label><input type="checkbox">Review <code>enquo()</code> vs <code>enexpr()</code> usage consistency:</label>
-<ul class="task-list"><li><label><input type="checkbox"><code>R/histogram.R</code> uses both - determine correct pattern</label></li>
-<li><label><input type="checkbox"><code>R/raster.R</code> uses both - ensure consistency</label></li>
+<label><input type="checkbox" checked>Review <code>enquo()</code> vs <code>enexpr()</code> usage consistency:</label>
+<ul class="task-list"><li><label><input type="checkbox" checked><code>R/histogram.R</code> uses both - fixed to use <code>as_label()</code> with <code>enexpr()</code></label></li>
+<li><label><input type="checkbox" checked><code>R/raster.R</code> uses both - confirmed consistent (compute uses enquo, plot uses enexpr)</label></li>
 </ul></li>
 <li>
-<label><input type="checkbox">Add input validation where missing:</label>
-<ul class="task-list"><li><label><input type="checkbox">Check bins &gt; 0</label></li>
-<li><label><input type="checkbox">Check resolution &gt; 0</label></li>
-<li><label><input type="checkbox">Check binwidth &gt; 0 if provided</label></li>
+<label><input type="checkbox" checked>Add input validation where missing:</label>
+<ul class="task-list"><li><label><input type="checkbox" checked>Check bins &gt; 0 (added to db_bin, db_compute_bins, dbplot_histogram)</label></li>
+<li><label><input type="checkbox" checked>Check resolution &gt; 0 (added to db_compute_raster, dbplot_raster)</label></li>
+<li><label><input type="checkbox" checked>Check binwidth &gt; 0 if provided (added to db_bin, db_compute_bins, dbplot_histogram)</label></li>
 </ul></li>
-<li><label><input type="checkbox">Consider adding <code>cli</code> for better error messages</label></li>
+<li><label><input type="checkbox">Consider adding <code>cli</code> for better error messages (deferred to future)</label></li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a></h3>
-<ul class="task-list"><li><label><input type="checkbox">Fix <code>R/discrete.R</code> line 123: “Bar plot” → “Line plot” in docs</label></li>
-<li><label><input type="checkbox">Review all function documentation for accuracy</label></li>
-<li><label><input type="checkbox">Ensure all examples run successfully</label></li>
-<li><label><input type="checkbox">Add more details to descriptions where needed</label></li>
+<ul class="task-list"><li><label><input type="checkbox" checked>Fix <code>R/discrete.R</code> line 123: “Bar plot” → “Line plot” in docs</label></li>
+<li><label><input type="checkbox" checked>Review all function documentation for accuracy</label></li>
+<li><label><input type="checkbox" checked>Ensure all examples run successfully (R CMD check passed)</label></li>
+<li><label><input type="checkbox" checked>Regenerate documentation with devtools::document()</label></li>
 </ul></div>
 </div>
 <div class="section level2">
