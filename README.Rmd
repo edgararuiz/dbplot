@@ -64,15 +64,14 @@ pak::pak("edgararuiz/dbplot")
 
 ## Example
 
-The functions work with standard database connections (via DBI/dbplyr) and with Spark connections (via sparklyr). A local `RSQLite` database will be used for the examples in this README.  
+The functions work with standard database connections (via DBI/dbplyr) and with Spark connections (via sparklyr). A local DuckDB database will be used for the examples in this README.  
 
 
 ```{r}
 library(DBI)
-library(odbc)
 library(dplyr)
 
-con <- dbConnect(RSQLite::SQLite(), ":memory:")
+con <- dbConnect(duckdb::duckdb(), ":memory:")
 db_flights <- copy_to(con, nycflights13::flights, "flights")
 ```
 

@@ -86,7 +86,7 @@
 #' library(DBI)
 #'
 #' # Connect to database
-#' con <- dbConnect(RSQLite::SQLite(), ":memory:")
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
 #' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Create histogram
