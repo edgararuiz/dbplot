@@ -150,7 +150,7 @@ db_compute_raster2 <- function(
 #' @param y A continuous variable
 #' @param fill The aggregation formula. Defaults to count (n)
 #' @param resolution The number of bins created by variable. The highest the number, the more records
-#' can be potentially imported from the sourd
+#' can be potentially imported from the source
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
 #' @examples

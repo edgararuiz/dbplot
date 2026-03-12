@@ -30,9 +30,9 @@ Use this checklist to track progress on upgrading the dbplot package.
 - [x] Test all examples still work
 
 ### Fix Typos
-- [ ] `test-raster.R` line 8: "complte" → "complete"
-- [ ] `test-raster.R` line 23: "rignt" → "right"
-- [ ] `R/raster.R` line 153: "sourd" → "source"
+- [x] `test-raster.R` line 8: "complte" → "complete"
+- [x] `test-raster.R` line 23: "rignt" → "right"
+- [x] `R/raster.R` line 153: "sourd" → "source"
 
 ### Test Suite Modernization
 - [ ] Add `edition: 3` to `tests/testthat.R`
