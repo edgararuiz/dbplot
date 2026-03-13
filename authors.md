@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/edgararuiz/dbplot/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/edgararuiz/dbplot/blob/v0.4.0/DESCRIPTION)
 
 Ruiz E (2026). *dbplot: Simplifies Plotting Data Inside Databases*. R
 package version 0.4.0, <https://github.com/edgararuiz/dbplot>.
