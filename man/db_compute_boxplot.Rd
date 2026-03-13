@@ -37,7 +37,15 @@ Note that this function supports input tbl that already contains
 grouping variables. This can be useful when creating faceted boxplots.
 }
 \examples{
+\dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
-mtcars |>
+db_mtcars |>
   db_compute_boxplot(am, mpg)
+
+dbDisconnect(con)
+}
 }

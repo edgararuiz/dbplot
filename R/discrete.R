@@ -13,18 +13,26 @@
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
+#' \dontrun{
+#' library(DBI)
+#' library(dplyr)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Returns the row count per am
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_count(am)
 #'
 #' # Returns the average mpg per am
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_count(am, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_count(am, mean(mpg), sum(mpg))
+#'
+#' dbDisconnect(con)
+#' }
 #' @export
 db_compute_count <- function(data, x, ..., y = n()) {
   x <- enquo(x)
@@ -56,21 +64,27 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
-#'
-#' library(ggplot2)
+#' \dontrun{
+#' library(DBI)
 #' library(dplyr)
+#' library(ggplot2)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Returns a plot of the row count per am
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_bar(am)
 #'
 #' # Returns a plot of the average mpg per am
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_bar(am, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_bar(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
+#'
+#' dbDisconnect(con)
+#' }
 #' @seealso
 #' \code{\link{dbplot_line}} ,
 #' \code{\link{dbplot_histogram}},  \code{\link{dbplot_raster}}
@@ -141,21 +155,27 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #' @param y The aggregation formula. Defaults to count (n)
 #'
 #' @examples
-#'
-#' library(ggplot2)
+#' \dontrun{
+#' library(DBI)
 #' library(dplyr)
+#' library(ggplot2)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Returns a plot of the row count per cyl
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_line(cyl)
 #'
 #' # Returns a plot of the average mpg per cyl
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_line(cyl, mean(mpg))
 #'
 #' # Returns the average and sum of mpg per am
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_line(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
+#'
+#' dbDisconnect(con)
+#' }
 #' @seealso
 #' \code{\link{dbplot_bar}},
 #' \code{\link{dbplot_histogram}},  \code{\link{dbplot_raster}}

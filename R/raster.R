@@ -31,15 +31,22 @@
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
 #' @examples
-#'
+#' \dontrun{
+#' library(DBI)
+#' library(dplyr)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_faithful <- copy_to(con, faithful, "faithful")
 #'
 #' # Returns a 100x100 grid of record count of intersections of eruptions and waiting
-#' faithful |>
+#' db_faithful |>
 #'   db_compute_raster(eruptions, waiting)
 #'
 #' # Returns a 50x50 grid of eruption averages of intersections of eruptions and waiting
-#' faithful |>
+#' db_faithful |>
 #'   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
+#'
+#' dbDisconnect(con)
+#' }
 #' @export
 db_compute_raster <- function(
   data,
@@ -158,17 +165,23 @@ db_compute_raster2 <- function(
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
 #' @examples
-#'
-#' library(ggplot2)
+#' \dontrun{
+#' library(DBI)
 #' library(dplyr)
+#' library(ggplot2)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_faithful <- copy_to(con, faithful, "faithful")
 #'
 #' # Returns a 100x100 raster plot of record count of intersections of eruptions and waiting
-#' faithful |>
+#' db_faithful |>
 #'   dbplot_raster(eruptions, waiting)
 #'
 #' # Returns a 50x50 raster plot of eruption averages of intersections of eruptions and waiting
-#' faithful |>
+#' db_faithful |>
 #'   dbplot_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
+#'
+#' dbDisconnect(con)
+#' }
 #' @seealso
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,
 #' \code{\link{dbplot_histogram}}

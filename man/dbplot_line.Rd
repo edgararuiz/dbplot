@@ -28,21 +28,27 @@ efficiency, and only make one "trip" to the database in order to
 obtains multiple, related, plots.
 }
 \examples{
-
-library(ggplot2)
+\dontrun{
+library(DBI)
 library(dplyr)
+library(ggplot2)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
 # Returns a plot of the row count per cyl
-mtcars |>
+db_mtcars |>
   dbplot_line(cyl)
 
 # Returns a plot of the average mpg per cyl
-mtcars |>
+db_mtcars |>
   dbplot_line(cyl, mean(mpg))
 
 # Returns the average and sum of mpg per am
-mtcars |>
+db_mtcars |>
   dbplot_line(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
+
+dbDisconnect(con)
+}
 }
 \seealso{
 \code{\link{dbplot_bar}},
