@@ -280,7 +280,22 @@ test_that("db_compute_boxplot works with DuckDB", {
 
 ---
 
-### Phase 4: Regenerate Documentation (5 min)
+### Phase 4: Configure pkgdown to Run Examples (5 min)
+
+Update `_pkgdown.yml` to run `\dontrun{}` examples when building the site.
+
+Add to the top of the file (after `url:`):
+
+```yaml
+build:
+  run_dont_run: true
+```
+
+This ensures examples appear in the pkgdown documentation website even though they won't run on CRAN.
+
+---
+
+### Phase 5: Regenerate Documentation (5 min)
 
 ```r
 devtools::document()
@@ -290,7 +305,7 @@ Verify `.Rd` files show `\dontrun{}` sections.
 
 ---
 
-### Phase 5: Run Tests and Verify (15 min)
+### Phase 6: Run Tests and Verify (15 min)
 
 1. **Create snapshots:**
 ```r
@@ -352,11 +367,14 @@ devtools::check()
 - [ ] Add db_compute_raster test
 - [ ] Add db_compute_boxplot test
 
-### Phase 4: Documentation
+### Phase 4: pkgdown Configuration
+- [ ] Add `build: run_dont_run: true` to _pkgdown.yml
+
+### Phase 5: Documentation
 - [ ] Run devtools::document()
 - [ ] Verify .Rd files updated
 
-### Phase 5: Verification
+### Phase 6: Verification
 - [ ] Run devtools::test() - create snapshots
 - [ ] Review snapshots in _snaps/test-plot-snapshots/
 - [ ] Run devtools::check() - verify passes
@@ -367,10 +385,11 @@ devtools::check()
 ## Commit Strategy
 
 1. **Commit 1**: Update all examples to DuckDB
-2. **Commit 2**: Add snapshot tests for plots
-3. **Commit 3**: Add computation tests
-4. **Commit 4**: Commit snapshot PNG files
-5. **Commit 5**: Regenerate documentation
+2. **Commit 2**: Configure pkgdown to run \dontrun examples
+3. **Commit 3**: Add snapshot tests for plots
+4. **Commit 4**: Add computation tests
+5. **Commit 5**: Commit snapshot PNG files
+6. **Commit 6**: Regenerate documentation
 
 ---
 
