@@ -34,6 +34,11 @@ dbplot_line(data, x, ..., y = n())
 
   The aggregation formula. Defaults to count (n)
 
+## Value
+
+A ggplot object with a line plot. If multiple aggregations are provided,
+returns a list of ggplot objects, one for each aggregation.
+
 ## See also
 
 [`dbplot_bar`](https://edgararuiz.github.io/dbplot/reference/dbplot_bar.md),

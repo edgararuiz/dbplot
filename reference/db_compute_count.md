@@ -29,6 +29,12 @@ db_compute_count(data, x, ..., y = n())
 
   The aggregation formula. Defaults to count (n)
 
+## Value
+
+An ungrouped data.frame with the discrete variable and one or more
+aggregation columns. The first column is the grouping variable (x),
+followed by the aggregated values.
+
 ## Examples
 
 ``` r

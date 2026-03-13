@@ -4,7 +4,7 @@
 [![CRAN
 status](https://img.shields.io/cran/v/dbplot?color=brightgreen)](https://CRAN.R-project.org/package=dbplot)
 [![Coverage
-status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=main)
+status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://app.codecov.io/github/edgararuiz/dbplot?branch=main)
 
 - [Installation](#installation)
 - [Connecting to a data source](#connecting-to-a-data-source)
@@ -308,11 +308,11 @@ db_flights |>
 #>  3     729.       5
 #>  4     548.       6
 #>  5     684.       1
-#>  6     774.       6
-#>  7    1000.       1
-#>  8     -40.7 207999
-#>  9      NA     9430
-#> 10     276.     425
+#>  6     -40.7 207999
+#>  7      NA     9430
+#>  8     276.     425
+#>  9     457.      23
+#> 10     593        6
 #> # ℹ 18 more rows
 ```
 
@@ -356,18 +356,18 @@ db_flights |>
 #> # Source:   SQL [?? x 2]
 #> # Database: DuckDB 1.4.4 [edgar@Darwin 25.3.0:R 4.5.2/:memory:]
 #> # Groups:   x
-#>        x      n
-#>    <dbl>  <dbl>
-#>  1  49.8  19063
-#>  2 412.      35
-#>  3 910.       2
-#>  4 140.    3746
-#>  5 367.     110
-#>  6 638.       5
-#>  7 -40.7 207999
-#>  8  NA     9430
-#>  9 276.     425
-#> 10 457.      23
+#>         x      n
+#>     <dbl>  <dbl>
+#>  1 -40.7  207999
+#>  2  NA      9430
+#>  3 276.      425
+#>  4 457.       23
+#>  5 593         6
+#>  6   4.53  79784
+#>  7 186.     1742
+#>  8  95.1    7890
+#>  9 321.      232
+#> 10 729.        5
 #> # ℹ more rows
 ```
 

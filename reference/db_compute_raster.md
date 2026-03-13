@@ -46,6 +46,16 @@ db_compute_raster2(data, x, y, fill = n(), resolution = 100, complete = FALSE)
 
   Uses tidyr::complete to include empty bins. Inserts value of 0.
 
+## Value
+
+An ungrouped data.frame with three columns: the x variable bins, the y
+variable bins, and the aggregated fill values for each x-y intersection.
+
+For \`db_compute_raster2\`: A data.frame with five columns - the x and y
+variable bins, the fill values, and additional columns for the upper
+bounds of each bin (x_2 and y_2), useful for defining precise tile
+boundaries.
+
 ## Details
 
 There are two considerations when using a Raster plot with a database.
@@ -92,16 +102,16 @@ db_faithful |>
 #> # A tibble: 220 × 3
 #>    eruptions waiting `mean(eruptions)`
 #>        <dbl>   <dbl>             <dbl>
-#>  1      4.47    84.3              4.53
-#>  2      1.88    50.4              1.92
-#>  3      4.33    84.3              4.35
-#>  4      3.42    78.0              3.45
-#>  5      4.4     76.9              4.47
-#>  6      3.35    65.3              3.37
-#>  7      3.77    73.7              3.83
-#>  8      1.95    51.5              2.02
-#>  9      1.81    47.2              1.87
-#> 10      1.95    58.9              1.99
+#>  1      2.23    61.0              2.28
+#>  2      4.68    87.5              4.7 
+#>  3      1.74    61.0              1.75
+#>  4      4.75    83.3              4.8 
+#>  5      4.47    73.7              4.53
+#>  6      1.95    54.7              1.98
+#>  7      4.05    75.9              4.08
+#>  8      4.4     78.0              4.43
+#>  9      4.33    79.0              4.35
+#> 10      4.54    83.3              4.57
 #> # ℹ 210 more rows
 
 dbDisconnect(con)

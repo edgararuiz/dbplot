@@ -48,6 +48,12 @@ db_compute_boxplot(data, x, var, coef = 1.5)
 
   Length of the whiskers as multiple of IQR. Defaults to 1.5
 
+## Value
+
+An ungrouped data.frame with boxplot statistics including columns for
+the grouping variable(s), quartiles (lower, middle, upper), whisker
+bounds (ymin, ymax), and the count of observations per group.
+
 ## Examples
 
 ``` r

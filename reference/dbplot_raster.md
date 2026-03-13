@@ -44,6 +44,11 @@ dbplot_raster(data, x, y, fill = n(), resolution = 100, complete = FALSE)
 
   Uses tidyr::complete to include empty bins. Inserts value of 0.
 
+## Value
+
+A ggplot object displaying a raster/heatmap plot of the aggregated data
+across the two continuous variables.
+
 ## Details
 
 There are two considerations when using a Raster plot with a database.

@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">dbplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
 <img src="logo.svg" class="logo" alt=""><h1 id="dbplot-">dbplot <a class="anchor" aria-label="anchor" href="#dbplot-"></a>
 </h1>
 </div>
-<p><a href="https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=dbplot" class="external-link"><img src="https://img.shields.io/cran/v/dbplot?color=brightgreen" alt="CRAN status"></a> <a href="https://codecov.io/github/edgararuiz/dbplot?branch=main" class="external-link"><img src="https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg" alt="Coverage status"></a></p>
+<p><a href="https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=dbplot" class="external-link"><img src="https://img.shields.io/cran/v/dbplot?color=brightgreen" alt="CRAN status"></a> <a href="https://app.codecov.io/github/edgararuiz/dbplot?branch=main" class="external-link"><img src="https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg" alt="Coverage status"></a></p>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#connecting-to-a-data-source">Connecting to a data source</a></li>
@@ -319,11 +319,11 @@ Boxplot of flight distances by origin airport (DuckDB)
 <span><span class="co">#&gt;  3     729.       5</span></span>
 <span><span class="co">#&gt;  4     548.       6</span></span>
 <span><span class="co">#&gt;  5     684.       1</span></span>
-<span><span class="co">#&gt;  6     774.       6</span></span>
-<span><span class="co">#&gt;  7    1000.       1</span></span>
-<span><span class="co">#&gt;  8     -40.7 207999</span></span>
-<span><span class="co">#&gt;  9      NA     9430</span></span>
-<span><span class="co">#&gt; 10     276.     425</span></span>
+<span><span class="co">#&gt;  6     -40.7 207999</span></span>
+<span><span class="co">#&gt;  7      NA     9430</span></span>
+<span><span class="co">#&gt;  8     276.     425</span></span>
+<span><span class="co">#&gt;  9     457.      23</span></span>
+<span><span class="co">#&gt; 10     593        6</span></span>
 <span><span class="co">#&gt; # ℹ 18 more rows</span></span></code></pre></div>
 <p>The data can be piped to a plot</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -359,18 +359,18 @@ Custom histogram of arrival delays using db_compute_bins
 <span><span class="co">#&gt; # Source:   SQL [?? x 2]</span></span>
 <span><span class="co">#&gt; # Database: DuckDB 1.4.4 [edgar@Darwin 25.3.0:R 4.5.2/:memory:]</span></span>
 <span><span class="co">#&gt; # Groups:   x</span></span>
-<span><span class="co">#&gt;        x      n</span></span>
-<span><span class="co">#&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1  49.8  19063</span></span>
-<span><span class="co">#&gt;  2 412.      35</span></span>
-<span><span class="co">#&gt;  3 910.       2</span></span>
-<span><span class="co">#&gt;  4 140.    3746</span></span>
-<span><span class="co">#&gt;  5 367.     110</span></span>
-<span><span class="co">#&gt;  6 638.       5</span></span>
-<span><span class="co">#&gt;  7 -40.7 207999</span></span>
-<span><span class="co">#&gt;  8  NA     9430</span></span>
-<span><span class="co">#&gt;  9 276.     425</span></span>
-<span><span class="co">#&gt; 10 457.      23</span></span>
+<span><span class="co">#&gt;         x      n</span></span>
+<span><span class="co">#&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 -40.7  207999</span></span>
+<span><span class="co">#&gt;  2  NA      9430</span></span>
+<span><span class="co">#&gt;  3 276.      425</span></span>
+<span><span class="co">#&gt;  4 457.       23</span></span>
+<span><span class="co">#&gt;  5 593         6</span></span>
+<span><span class="co">#&gt;  6   4.53  79784</span></span>
+<span><span class="co">#&gt;  7 186.     1742</span></span>
+<span><span class="co">#&gt;  8  95.1    7890</span></span>
+<span><span class="co">#&gt;  9 321.      232</span></span>
+<span><span class="co">#&gt; 10 729.        5</span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">db_flights</span> <span class="op">|&gt;</span></span>

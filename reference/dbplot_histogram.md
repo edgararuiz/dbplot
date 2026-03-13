@@ -31,6 +31,10 @@ dbplot_histogram(data, x, bins = 30, binwidth = NULL)
   Fixed width for each bin, in the same units as the data. Overrides
   bins when specified
 
+## Value
+
+A ggplot object displaying a histogram of the specified variable.
+
 ## See also
 
 [`dbplot_bar`](https://edgararuiz.github.io/dbplot/reference/dbplot_bar.md),

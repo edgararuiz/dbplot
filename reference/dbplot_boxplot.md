@@ -34,6 +34,11 @@ dbplot_boxplot(data, x, var, coef = 1.5)
 
   Length of the whiskers as multiple of IQR. Defaults to 1.5
 
+## Value
+
+A ggplot object displaying boxplots for the specified variable grouped
+by x.
+
 ## See also
 
 [`dbplot_bar`](https://edgararuiz.github.io/dbplot/reference/dbplot_bar.md),

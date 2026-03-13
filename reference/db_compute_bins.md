@@ -30,6 +30,11 @@ db_compute_bins(data, x, bins = 30, binwidth = NULL)
   Fixed width for each bin, in the same units as the data. Overrides
   bins when specified
 
+## Value
+
+An ungrouped data.frame with two columns: the bin values for the x
+variable and the count of observations in each bin.
+
 ## See also
 
 [`db_bin`](https://edgararuiz.github.io/dbplot/reference/db_bin.md),
@@ -49,25 +54,25 @@ db_mtcars |>
 #> # A tibble: 19 × 2
 #>      mpg count
 #>    <dbl> <dbl>
-#>  1  21.4     3
-#>  2  12.8     1
-#>  3  25.3     1
-#>  4  22.2     2
-#>  5  23.7     1
-#>  6  15.9     1
-#>  7  32.3     1
-#>  8  33.1     1
-#>  9  18.2     1
-#> 10  17.4     2
-#> 11  19.0     3
-#> 12  15.1     4
-#> 13  10.4     2
-#> 14  14.3     2
-#> 15  26.8     1
-#> 16  20.6     2
-#> 17  13.5     1
-#> 18  16.7     1
-#> 19  30.0     2
+#>  1  20.6     2
+#>  2  13.5     1
+#>  3  16.7     1
+#>  4  30.0     2
+#>  5  22.2     2
+#>  6  23.7     1
+#>  7  15.9     1
+#>  8  32.3     1
+#>  9  33.1     1
+#> 10  21.4     3
+#> 11  12.8     1
+#> 12  25.3     1
+#> 13  18.2     1
+#> 14  17.4     2
+#> 15  19.0     3
+#> 16  15.1     4
+#> 17  10.4     2
+#> 18  14.3     2
+#> 19  26.8     1
 
 # Returns record count for bins of size 10
 db_mtcars |>
