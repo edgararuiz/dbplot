@@ -23,6 +23,14 @@ will be imported from the source}
 
 \item{complete}{Uses tidyr::complete to include empty bins. Inserts value of 0.}
 }
+\value{
+An ungrouped data.frame with three columns: the x variable bins, the y variable
+  bins, and the aggregated fill values for each x-y intersection.
+
+For `db_compute_raster2`: A data.frame with five columns - the x and y variable
+  bins, the fill values, and additional columns for the upper bounds of each bin
+  (x_2 and y_2), useful for defining precise tile boundaries.
+}
 \description{
 To visualize two continuous variables, we typically resort to a Scatter plot. However,
 this may not be practical when visualizing millions or billions of dots representing the

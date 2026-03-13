@@ -30,6 +30,9 @@
 #' will be imported from the source
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
 #'
+#' @returns An ungrouped data.frame with three columns: the x variable bins, the y variable
+#'   bins, and the aggregated fill values for each x-y intersection.
+#'
 #' @examples
 #' \dontrun{
 #' library(DBI)
@@ -101,6 +104,9 @@ db_compute_raster <- function(
 }
 
 #' @rdname db_compute_raster
+#' @returns For `db_compute_raster2`: A data.frame with five columns - the x and y variable
+#'   bins, the fill values, and additional columns for the upper bounds of each bin
+#'   (x_2 and y_2), useful for defining precise tile boundaries.
 #' @export
 db_compute_raster2 <- function(
   data,
@@ -163,6 +169,9 @@ db_compute_raster2 <- function(
 #' @param resolution The number of bins created per variable. The higher the number, the more records
 #' will be imported from the source
 #' @param complete Uses tidyr::complete to include empty bins. Inserts value of 0.
+#'
+#' @returns A ggplot object displaying a raster/heatmap plot of the aggregated data
+#'   across the two continuous variables.
 #'
 #' @examples
 #' \dontrun{

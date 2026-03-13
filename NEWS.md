@@ -9,6 +9,7 @@
 
 ## Improvements
 
+### Dependencies and Infrastructure
 * Updated all package dependencies to modern versions:
   - dplyr >= 1.0.0 (was >= 0.7)
   - rlang >= 1.0.0 (was >= 0.3)
@@ -16,12 +17,27 @@
   - dbplyr >= 2.0.0 (was >= 1.4.0)
   - testthat >= 3.0.0 (was unversioned)
 * Removed magrittr dependency (using native pipe)
+* Migrated CI from Travis CI to GitHub Actions with multi-platform testing
+  (macOS, Windows, Ubuntu with R devel/release/oldrel)
+* Added automated test coverage reporting via codecov
+* Added pkgdown site deployment automation
+
+### Code Quality
 * All examples now use native pipe `|>` instead of `%>%`
 * Fixed typos in code and documentation
 * Improved S3 method exports using modern roxygen2 patterns
+* Consolidated `globalVariables()` declarations for better maintainability
+* Added input validation for bins, binwidth, and resolution parameters
+* Modernized test suite to use testthat 3e patterns
+
+### Documentation
 * Examples now use DuckDB instead of SQLite for better performance and boxplot
   support. DuckDB's native quantile() function enables complete database workflow
-  demonstrations including boxplot examples.
+  demonstrations including boxplot examples
+* Added comprehensive package-level documentation
+* Updated all URLs to current Posit documentation sites
+* Added CODE_OF_CONDUCT.md and CONTRIBUTING.md
+* Enhanced pkgdown site with Bootstrap 5 theme and improved organization
 
 
 # dbplot 0.3.3

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 [![R-CMD-check](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgararuiz/dbplot/actions/workflows/R-CMD-check.yaml)
 [![CRAN status](https://img.shields.io/cran/v/dbplot?color=brightgreen)](https://CRAN.R-project.org/package=dbplot)
-[![Coverage status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://codecov.io/github/edgararuiz/dbplot?branch=main)
+[![Coverage status](https://codecov.io/gh/edgararuiz/dbplot/branch/main/graph/badge.svg)](https://app.codecov.io/github/edgararuiz/dbplot?branch=main)
 
 -   [Installation](#installation)
 -   [Connecting to a data source](#connecting-to-a-data-source)

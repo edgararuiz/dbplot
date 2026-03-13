@@ -15,6 +15,10 @@ dbplot_line(data, x, ..., y = n())
 
 \item{y}{The aggregation formula. Defaults to count (n)}
 }
+\value{
+A ggplot object with a line plot. If multiple aggregations are provided,
+  returns a list of ggplot objects, one for each aggregation.
+}
 \description{
 Uses dplyr operations to aggregate data and then `ggplot2`
 to create a line plot.  Because of this approach,

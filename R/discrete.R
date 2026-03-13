@@ -12,6 +12,10 @@
 #' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
 #'
+#' @returns An ungrouped data.frame with the discrete variable and one or more
+#'   aggregation columns. The first column is the grouping variable (x), followed
+#'   by the aggregated values.
+#'
 #' @examples
 #' \dontrun{
 #' library(DBI)
@@ -62,6 +66,9 @@ db_compute_count <- function(data, x, ..., y = n()) {
 #' @param x A discrete variable
 #' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
+#'
+#' @returns A ggplot object with a bar plot. If multiple aggregations are provided,
+#'   returns a list of ggplot objects, one for each aggregation.
 #'
 #' @examples
 #' \dontrun{
@@ -153,6 +160,9 @@ dbplot_bar <- function(data, x, ..., y = n()) {
 #' @param x A discrete variable
 #' @param ... A set of named or unnamed aggregations
 #' @param y The aggregation formula. Defaults to count (n)
+#'
+#' @returns A ggplot object with a line plot. If multiple aggregations are provided,
+#'   returns a list of ggplot objects, one for each aggregation.
 #'
 #' @examples
 #' \dontrun{

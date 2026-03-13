@@ -8,6 +8,10 @@
 #' @param bins Number of bins. Defaults to 30.
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
+#' @returns An unevaluated expression (rlang quosure) that calculates bin membership
+#'   for the specified variable. This expression is designed to be used within dplyr
+#'   verbs using the `!!` operator.
+#'
 #' @examples
 #' \dontrun{
 #' library(DBI)

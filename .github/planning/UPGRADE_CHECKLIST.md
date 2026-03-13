@@ -161,33 +161,33 @@ Use this checklist to track progress on upgrading the dbplot package.
 ## Phase 5: Release Preparation 📦
 
 ### Version & NEWS
-- [ ] Update version in DESCRIPTION from 0.3.3.9000 to 0.4.0
-- [ ] Add comprehensive release notes to NEWS.md:
-  - [ ] Breaking changes section
-  - [ ] New features
-  - [ ] Bug fixes
-  - [ ] Dependency updates
-  - [ ] Deprecated functions
-- [ ] Update cran-comments.md:
-  - [ ] Current test environments
-  - [ ] R CMD check results
-  - [ ] Downstream dependencies check
+- [x] Update version in DESCRIPTION from 0.3.3.9000 to 0.4.0
+- [x] Add comprehensive release notes to NEWS.md:
+  - [x] Breaking changes section
+  - [x] New features
+  - [x] Bug fixes
+  - [x] Dependency updates
+  - [x] Deprecated functions
+- [x] Update cran-comments.md:
+  - [x] Current test environments
+  - [x] R CMD check results
+  - [x] Downstream dependencies check
 
 ### Quality Checks
-- [ ] Run `devtools::check()` - 0 errors, 0 warnings, 0 notes
-- [ ] Run `devtools::check(cran = TRUE)` - passes
-- [ ] Run `urlchecker::url_check()` - all links valid
-- [ ] Run `spelling::spell_check_package()` - no typos
+- [x] Run `devtools::check()` - 0 errors, 0 warnings, 0 notes ✅
+- [x] Run `devtools::check(cran = TRUE)` - passes ✅
+- [x] Run `urlchecker::url_check()` - all links valid ✅ (fixed codecov URL)
+- [x] Run `spelling::spell_check_package()` - no typos ✅ (created WORDLIST)
 - [ ] Test installation from source: `install.packages(".", repos = NULL, type = "source")`
-- [ ] Test on multiple R versions (4.1, 4.2, 4.3, 4.4, 4.5)
+- [ ] Test on multiple R versions (4.1, 4.2, 4.3, 4.4, 4.5) - GitHub Actions covers this
 - [ ] Check with `rhub::check_for_cran()` if available
 
 ### Final Review
-- [ ] All examples run without errors
-- [ ] All tests pass
-- [ ] All vignettes build
-- [ ] Documentation is complete and accurate
-- [ ] No TODO or FIXME comments remain
+- [x] All examples run without errors ✅
+- [x] All tests pass ✅ (77 tests, 0 failures)
+- [x] All vignettes build ✅ (no vignettes in package)
+- [x] Documentation is complete and accurate ✅
+- [x] No TODO or FIXME comments remain ✅
 - [ ] Git history is clean (consider squashing WIP commits)
 
 ## Optional Enhancements ✨

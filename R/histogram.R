@@ -13,6 +13,9 @@
 #' @param bins Number of bins. Defaults to 30.
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
+#' @returns An ungrouped data.frame with two columns: the bin values for the x variable
+#'   and the count of observations in each bin.
+#'
 #' @examples
 #' \dontrun{
 #' library(DBI)
@@ -71,6 +74,8 @@ db_compute_bins <- function(data, x, bins = 30, binwidth = NULL) {
 #' @param x A continuous variable
 #' @param bins Number of bins. Defaults to 30.
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
+#'
+#' @returns A ggplot object displaying a histogram of the specified variable.
 #'
 #' @examples
 #' \dontrun{

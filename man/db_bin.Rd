@@ -13,6 +13,11 @@ db_bin(var, bins = 30, binwidth = NULL)
 
 \item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
+\value{
+An unevaluated expression (rlang quosure) that calculates bin membership
+  for the specified variable. This expression is designed to be used within dplyr
+  verbs using the `!!` operator.
+}
 \description{
 Uses the rlang package to build the formula needed to create the bins of a numeric variable
 in an unevaluated fashion.  This way, the formula can be then passed inside a dplyr

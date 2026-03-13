@@ -15,6 +15,9 @@ dbplot_boxplot(data, x, var, coef = 1.5)
 
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5}
 }
+\value{
+A ggplot object displaying boxplots for the specified variable grouped by x.
+}
 \description{
 Uses dplyr operations to aggregate data and then `ggplot2`
 to create the boxplot. Because of this approach,

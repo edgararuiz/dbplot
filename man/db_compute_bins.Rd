@@ -15,6 +15,10 @@ db_compute_bins(data, x, bins = 30, binwidth = NULL)
 
 \item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
+\value{
+An ungrouped data.frame with two columns: the bin values for the x variable
+  and the count of observations in each bin.
+}
 \description{
 Uses dplyr operations to create histogram bins.
 Because of this approach,
