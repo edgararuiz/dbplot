@@ -37,7 +37,7 @@ db_compute_bins(data, x, bins = 30, binwidth = NULL)
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(DBI)
 library(dplyr)
 con <- dbConnect(duckdb::duckdb(), ":memory:")
@@ -46,11 +46,38 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 # Returns record count for 30 bins in mpg
 db_mtcars |>
   db_compute_bins(mpg)
+#> # A tibble: 19 × 2
+#>      mpg count
+#>    <dbl> <dbl>
+#>  1  22.2     2
+#>  2  23.7     1
+#>  3  15.9     1
+#>  4  32.3     1
+#>  5  33.1     1
+#>  6  21.4     3
+#>  7  12.8     1
+#>  8  25.3     1
+#>  9  20.6     2
+#> 10  13.5     1
+#> 11  16.7     1
+#> 12  30.0     2
+#> 13  18.2     1
+#> 14  17.4     2
+#> 15  19.0     3
+#> 16  15.1     4
+#> 17  10.4     2
+#> 18  14.3     2
+#> 19  26.8     1
 
 # Returns record count for bins of size 10
 db_mtcars |>
   db_compute_bins(mpg, binwidth = 10)
+#> # A tibble: 2 × 2
+#>     mpg count
+#>   <dbl> <dbl>
+#> 1  10.4    18
+#> 2  20.4    14
 
 dbDisconnect(con)
-} # }
+# }
 ```

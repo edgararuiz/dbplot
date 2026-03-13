@@ -43,7 +43,7 @@ dbplot_line(data, x, ..., y = n())
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(DBI)
 library(dplyr)
 library(ggplot2)
@@ -54,14 +54,22 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 db_mtcars |>
   dbplot_line(cyl)
 
+
 # Returns a plot of the average mpg per cyl
 db_mtcars |>
   dbplot_line(cyl, mean(mpg))
 
+
 # Returns the average and sum of mpg per am
 db_mtcars |>
   dbplot_line(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
+#> $avg_mpg
+
+#> 
+#> $sum_mpg
+
+#> 
 
 dbDisconnect(con)
-} # }
+# }
 ```

@@ -39,7 +39,7 @@ dbplot_bar(data, x, ..., y = n())
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(DBI)
 library(dplyr)
 library(ggplot2)
@@ -50,14 +50,22 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 db_mtcars |>
   dbplot_bar(am)
 
+
 # Returns a plot of the average mpg per am
 db_mtcars |>
   dbplot_bar(am, mean(mpg))
 
+
 # Returns the average and sum of mpg per am
 db_mtcars |>
   dbplot_bar(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
+#> $avg_mpg
+
+#> 
+#> $sum_mpg
+
+#> 
 
 dbDisconnect(con)
-} # }
+# }
 ```

@@ -41,7 +41,7 @@ dbplot_histogram(data, x, bins = 30, binwidth = NULL)
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(DBI)
 library(dplyr)
 library(ggplot2)
@@ -52,10 +52,12 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 db_mtcars |>
   dbplot_histogram(mpg)
 
+
 # A ggplot histogram with bins of size 10
 db_mtcars |>
   dbplot_histogram(mpg, binwidth = 10)
 
+
 dbDisconnect(con)
-} # }
+# }
 ```

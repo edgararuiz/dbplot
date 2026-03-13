@@ -37,8 +37,8 @@ CRAN release: 2020-02-07
   ([\#17](https://github.com/edgararuiz/dbplot/issues/17))
 
 - Adds support for
-  [`vars()`](https://dplyr.tidyverse.org/reference/vars.html) in the `x`
-  argument in
+  [`vars()`](https://ggplot2.tidyverse.org/reference/vars.html) in the
+  `x` argument in
   [`db_compute_boxplot()`](https://edgararuiz.github.io/dbplot/reference/db_compute_boxplot.md)
   ([\#27](https://github.com/edgararuiz/dbplot/issues/27))
 

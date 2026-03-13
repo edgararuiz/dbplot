@@ -45,7 +45,7 @@ dbplot_boxplot(data, x, var, coef = 1.5)
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(DBI)
 library(dplyr)
 library(ggplot2)
@@ -55,6 +55,7 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 db_mtcars |>
   dbplot_boxplot(am, mpg)
 
+
 dbDisconnect(con)
-} # }
+# }
 ```

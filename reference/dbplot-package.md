@@ -95,7 +95,7 @@ Useful links: - Report bugs:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \dontrun{
 library(dplyr)
 library(dbplot)
 library(DBI)
@@ -108,9 +108,11 @@ db_mtcars <- copy_to(con, mtcars, "mtcars")
 db_mtcars |>
   dbplot_histogram(mpg)
 
+
 # Create bar plot with custom aggregation
 db_mtcars |>
   dbplot_bar(cyl, avg_mpg = mean(mpg))
+
 
 # Get computation results for custom plotting
 db_mtcars |>
@@ -118,11 +120,27 @@ db_mtcars |>
   ggplot2::ggplot() +
   ggplot2::geom_col(ggplot2::aes(mpg, count))
 
+
 # Use db_bin() directly in dplyr
 db_mtcars |>
   group_by(bin = !!db_bin(mpg, bins = 10)) |>
   count()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.3/:memory:]
+#> # Groups:   bin
+#>      bin     n
+#>    <dbl> <dbl>
+#>  1  22.2     3
+#>  2  29.2     2
+#>  3  12.8     4
+#>  4  31.6     2
+#>  5  19.8     5
+#>  6  17.5     6
+#>  7  15.1     6
+#>  8  10.4     2
+#>  9  26.8     1
+#> 10  24.5     1
 
 dbDisconnect(con)
-} # }
+# }
 ```
