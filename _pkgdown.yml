@@ -74,6 +74,3 @@ footer:
     left: developed_by
     right: built_with
 
-development:
-  mode: auto
-  version_label: default

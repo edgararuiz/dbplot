@@ -24,7 +24,7 @@ Suggests:
     duckdb,
     RSQLite,
     nycflights13
-License: GPL-3
+License: MIT + file LICENSE
 URL: https://github.com/edgararuiz/dbplot
 BugReports: https://github.com/edgararuiz/dbplot/issues
 RoxygenNote: 7.3.3
