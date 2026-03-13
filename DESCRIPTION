@@ -23,7 +23,8 @@ Suggests:
     lifecycle,
     duckdb,
     RSQLite,
-    nycflights13
+    nycflights13,
+    ragg
 License: GPL-3
 URL: https://github.com/edgararuiz/dbplot
 BugReports: https://github.com/edgararuiz/dbplot/issues
