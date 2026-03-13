@@ -43,26 +43,25 @@ dbplot_line(data, x, ..., y = n())
 ## Examples
 
 ``` r
-library(ggplot2)
+if (FALSE) { # \dontrun{
+library(DBI)
 library(dplyr)
+library(ggplot2)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
 # Returns a plot of the row count per cyl
-mtcars |>
+db_mtcars |>
   dbplot_line(cyl)
 
-
 # Returns a plot of the average mpg per cyl
-mtcars |>
+db_mtcars |>
   dbplot_line(cyl, mean(mpg))
 
-
 # Returns the average and sum of mpg per am
-mtcars |>
+db_mtcars |>
   dbplot_line(am, avg_mpg = mean(mpg), sum_mpg = sum(mpg))
-#> $avg_mpg
 
-#> 
-#> $sum_mpg
-
-#> 
+dbDisconnect(con)
+} # }
 ```

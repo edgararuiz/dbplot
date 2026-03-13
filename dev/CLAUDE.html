@@ -39,10 +39,8 @@
 <strong>Consistent <code>tail</code> values</strong>: Use <code>tail -20</code> as default for most commands</li>
 <li>Only vary when explicitly needed (e.g., very long build logs require <code>tail -50</code>)</li>
 <li>This prevents unnecessary permission prompts for similar commands</li>
-</ul></div>
-<div class="section level2">
-<h2 id="project-context">Project Context<a class="anchor" aria-label="anchor" href="#project-context"></a></h2>
-<p>This is an R package for visualizing data inside databases. Key conventions:</p>
+<li>Before asking for a new permission check to see if there is a previously approved viable one that can be used in the settings.local.json file ## Project Context</li>
+</ul><p>This is an R package for visualizing data inside databases. Key conventions:</p>
 <div class="section level3">
 <h3 id="code-style">Code Style<a class="anchor" aria-label="anchor" href="#code-style"></a></h3>
 <ul><li>Use native pipe <code>|&gt;</code> (not <code>%&gt;%</code>)</li>
@@ -93,8 +91,9 @@
 </ul></div>
 <div class="section level2">
 <h2 id="database-support">Database Support<a class="anchor" aria-label="anchor" href="#database-support"></a></h2>
-<p>Functions work with: - Standard DBI/dbplyr connections (SQLite, PostgreSQL, SQL Server, Oracle) - Spark connections via sparklyr</p>
-<p>Note: Boxplot functions require database percentile function support.</p>
+<p>Functions work with: - Standard DBI/dbplyr connections (DuckDB, PostgreSQL, SQL Server, Oracle) - Spark connections via sparklyr</p>
+<p>Examples use DuckDB (not SQLite) for better performance and boxplot support.</p>
+<p>Note: Boxplot functions require database percentile function support. Supported: DuckDB, PostgreSQL, SQL Server, Oracle, Spark/Hive Not supported: SQLite, MySQL &lt; 8.0, MariaDB</p>
 </div>
 </div>
 

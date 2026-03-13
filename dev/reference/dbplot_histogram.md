@@ -41,15 +41,21 @@ dbplot_histogram(data, x, bins = 30, binwidth = NULL)
 ## Examples
 
 ``` r
-library(ggplot2)
+if (FALSE) { # \dontrun{
+library(DBI)
 library(dplyr)
+library(ggplot2)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
 # A ggplot histogram with 30 bins
-mtcars |>
+db_mtcars |>
   dbplot_histogram(mpg)
 
-
 # A ggplot histogram with bins of size 10
-mtcars |>
+db_mtcars |>
   dbplot_histogram(mpg, binwidth = 10)
+
+dbDisconnect(con)
+} # }
 ```

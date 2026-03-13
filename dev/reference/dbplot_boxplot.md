@@ -45,7 +45,16 @@ dbplot_boxplot(data, x, var, coef = 1.5)
 ## Examples
 
 ``` r
-mtcars |>
+if (FALSE) { # \dontrun{
+library(DBI)
+library(dplyr)
+library(ggplot2)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
+
+db_mtcars |>
   dbplot_boxplot(am, mpg)
 
+dbDisconnect(con)
+} # }
 ```

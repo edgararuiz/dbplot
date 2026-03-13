@@ -62,40 +62,20 @@ downloaded from the database.
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_faithful <- copy_to(con, faithful, "faithful")
 
 # Returns a 100x100 grid of record count of intersections of eruptions and waiting
-faithful |>
+db_faithful |>
   db_compute_raster(eruptions, waiting)
-#> # A tibble: 246 × 3
-#>    eruptions waiting `n()`
-#>        <dbl>   <dbl> <dbl>
-#>  1      1.6     51.5     1
-#>  2      1.64    63.7     1
-#>  3      1.67    58.9     1
-#>  4      1.70    53.6     1
-#>  5      1.74    46.7     2
-#>  6      1.74    47.8     1
-#>  7      1.74    53.6     1
-#>  8      1.74    57.8     1
-#>  9      1.74    61.6     1
-#> 10      1.78    45.6     1
-#> # ℹ 236 more rows
 
 # Returns a 50x50 grid of eruption averages of intersections of eruptions and waiting
-faithful |>
+db_faithful |>
   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
-#> # A tibble: 220 × 3
-#>    eruptions waiting `mean(eruptions)`
-#>        <dbl>   <dbl>             <dbl>
-#>  1      1.6     51.5              1.6 
-#>  2      1.6     63.1              1.67
-#>  3      1.67    53.6              1.73
-#>  4      1.67    58.9              1.7 
-#>  5      1.74    45.1              1.78
-#>  6      1.74    46.2              1.75
-#>  7      1.74    47.2              1.75
-#>  8      1.74    50.4              1.8 
-#>  9      1.74    51.5              1.78
-#> 10      1.74    52.5              1.8 
-#> # ℹ 210 more rows
+
+dbDisconnect(con)
+} # }
 ```

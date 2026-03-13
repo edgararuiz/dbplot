@@ -53,15 +53,14 @@ pak::pak("edgararuiz/dbplot")
 ## Example
 
 The functions work with standard database connections (via DBI/dbplyr)
-and with Spark connections (via sparklyr). A local `RSQLite` database
-will be used for the examples in this README.
+and with Spark connections (via sparklyr). A local DuckDB database will
+be used for the examples in this README.
 
 ``` r
 library(DBI)
-library(odbc)
 library(dplyr)
 
-con <- dbConnect(RSQLite::SQLite(), ":memory:")
+con <- dbConnect(duckdb::duckdb(), ":memory:")
 db_flights <- copy_to(con, nycflights13::flights, "flights")
 ```
 
@@ -76,31 +75,41 @@ creates a 30 bin histogram
 ``` r
 library(ggplot2)
 
-db_flights |> 
+db_flights |>
   dbplot_histogram(distance)
 ```
 
-![](reference/figures/README-unnamed-chunk-4-1.png)
+![Histogram showing the distribution of flight distances with 30
+bins](reference/figures/README-unnamed-chunk-4-1.png)
+
+Histogram of flight distances with default 30 bins
 
 Use `binwidth` to fix the bin size
 
 ``` r
-db_flights |> 
+db_flights |>
   dbplot_histogram(distance, binwidth = 400)
 ```
 
-![](reference/figures/README-unnamed-chunk-5-1.png)
+![Histogram showing the distribution of flight distances with fixed bin
+width of 400 units](reference/figures/README-unnamed-chunk-5-1.png)
+
+Histogram of flight distances with 400-unit bins
 
 Because it outputs a `ggplot2` object, more customization can be done
 
 ``` r
-db_flights |> 
+db_flights |>
   dbplot_histogram(distance, binwidth = 400) +
   labs(title = "Flights - Distance traveled") +
   theme_bw()
 ```
 
-![](reference/figures/README-unnamed-chunk-6-1.png)
+![Histogram of flight distances with custom title 'Flights - Distance
+traveled' and minimal
+theme](reference/figures/README-unnamed-chunk-6-1.png)
+
+Customized histogram with title and theme
 
 ### Raster
 
@@ -120,23 +129,31 @@ inside each square or processes some aggregation, like an average.
 
 ``` r
 db_flights |>
-  dbplot_raster(sched_dep_time, sched_arr_time) 
+  dbplot_raster(sched_dep_time, sched_arr_time)
 ```
 
-![](reference/figures/README-unnamed-chunk-7-1.png)
+![Heatmap showing the count of flights by scheduled departure time
+(x-axis) and scheduled arrival time
+(y-axis)](reference/figures/README-unnamed-chunk-7-1.png)
+
+Raster plot of scheduled departure and arrival times
 
 - Pass an aggregation formula that can run inside the database
 
 ``` r
 db_flights |>
   dbplot_raster(
-    sched_dep_time, 
-    sched_arr_time, 
+    sched_dep_time,
+    sched_arr_time,
     mean(distance, na.rm = TRUE)
-    ) 
+    )
 ```
 
-![](reference/figures/README-unnamed-chunk-8-1.png)
+![Heatmap showing the average flight distance for each combination of
+scheduled departure and arrival
+times](reference/figures/README-unnamed-chunk-8-1.png)
+
+Raster plot showing average flight distance by time
 
 - Increase or decrease for more, or less, definition. The `resolution`
   argument controls that, it defaults to 100
@@ -144,14 +161,18 @@ db_flights |>
 ``` r
 db_flights |>
   dbplot_raster(
-    sched_dep_time, 
-    sched_arr_time, 
+    sched_dep_time,
+    sched_arr_time,
     mean(distance, na.rm = TRUE),
     resolution = 20
-    ) 
+    )
 ```
 
-![](reference/figures/README-unnamed-chunk-9-1.png)
+![Heatmap with 20x20 resolution showing average flight distance by
+scheduled times with larger
+bins](reference/figures/README-unnamed-chunk-9-1.png)
+
+Raster plot with lower resolution (20x20 grid)
 
 ### Bar Plot
 
@@ -163,7 +184,10 @@ db_flights |>
   dbplot_bar(origin)
 ```
 
-![](reference/figures/README-unnamed-chunk-10-1.png)
+![Bar chart showing the number of flights from each origin airport (EWR,
+JFK, LGA)](reference/figures/README-unnamed-chunk-10-1.png)
+
+Bar plot of flight counts by origin airport
 
 - Pass an aggregation formula that will be calculated for each value in
   the discrete variable
@@ -173,7 +197,10 @@ db_flights |>
   dbplot_bar(origin, avg_delay =  mean(dep_delay, na.rm = TRUE))
 ```
 
-![](reference/figures/README-unnamed-chunk-11-1.png)
+![Bar chart showing the average departure delay in minutes for each
+origin airport](reference/figures/README-unnamed-chunk-11-1.png)
+
+Bar plot of average departure delay by origin airport
 
 ### Line plot
 
@@ -185,7 +212,10 @@ db_flights |>
   dbplot_line(month)
 ```
 
-![](reference/figures/README-unnamed-chunk-12-1.png)
+![Line chart showing the number of flights per month throughout the
+year](reference/figures/README-unnamed-chunk-12-1.png)
+
+Line plot of flight counts by month
 
 - Pass a formula that will be operated for each value in the discrete
   variable
@@ -195,7 +225,10 @@ db_flights |>
   dbplot_line(month, avg_delay = mean(dep_delay, na.rm = TRUE))
 ```
 
-![](reference/figures/README-unnamed-chunk-13-1.png)
+![Line chart showing the average departure delay in minutes for each
+month of the year](reference/figures/README-unnamed-chunk-13-1.png)
+
+Line plot of average departure delay by month
 
 ### Boxplot
 
@@ -207,6 +240,8 @@ calculations.
 
 **Supported databases:**
 
+- DuckDB (recommended for local examples) - uses
+  [`quantile()`](https://rdrr.io/r/stats/quantile.html)
 - Spark/Hive (via sparklyr) - uses `percentile_approx()`
 - SQL Server (2012+) - uses `PERCENTILE_CONT()`
 - PostgreSQL (9.4+) - uses `percentile_cont()`
@@ -224,7 +259,25 @@ nycflights13::flights |>
   dbplot_boxplot(origin, distance)
 ```
 
-![](reference/figures/README-unnamed-chunk-14-1.png)
+![Boxplot showing the distribution of flight distances for each origin
+airport using a local data
+frame](reference/figures/README-unnamed-chunk-14-1.png)
+
+Boxplot of flight distances by origin airport (local data)
+
+Boxplot also works with database connections that support quantile
+functions:
+
+``` r
+db_flights |>
+  dbplot_boxplot(origin, distance)
+```
+
+![Boxplot showing the distribution of flight distances for each origin
+airport using a DuckDB database
+connection](reference/figures/README-unnamed-chunk-15-1.png)
+
+Boxplot of flight distances by origin airport (DuckDB)
 
 ## Calculation functions
 
@@ -249,17 +302,17 @@ db_flights |>
   db_compute_bins(arr_delay) 
 #> # A tibble: 28 × 2
 #>    arr_delay  count
-#>        <dbl>  <int>
-#>  1     NA      9430
-#>  2    -86      5325
-#>  3    -40.7  207999
-#>  4      4.53  79784
-#>  5     49.8   19063
-#>  6     95.1    7890
-#>  7    140.     3746
-#>  8    186.     1742
-#>  9    231.      921
-#> 10    276.      425
+#>        <dbl>  <dbl>
+#>  1      95.1   7890
+#>  2     321.     232
+#>  3     729.       5
+#>  4     548.       6
+#>  5     684.       1
+#>  6     774.       6
+#>  7    1000.       1
+#>  8     -40.7 207999
+#>  9      NA     9430
+#> 10     276.     425
 #> # ℹ 18 more rows
 ```
 
@@ -273,7 +326,11 @@ db_flights |>
   geom_col(aes(arr_delay, count, fill = count))
 ```
 
-![](reference/figures/README-unnamed-chunk-16-1.png)
+![Custom colored histogram showing the distribution of arrival delays
+between -50 and 100
+minutes](reference/figures/README-unnamed-chunk-17-1.png)
+
+Custom histogram of arrival delays using db_compute_bins
 
 ## `db_bin()`
 
@@ -297,20 +354,20 @@ db_flights |>
   group_by(x = !! db_bin(arr_delay)) |>
   count()
 #> # Source:   SQL [?? x 2]
-#> # Database: sqlite 3.51.1 [:memory:]
+#> # Database: DuckDB 1.4.4 [edgar@Darwin 25.3.0:R 4.5.2/:memory:]
 #> # Groups:   x
-#>         x      n
-#>     <dbl>  <int>
-#>  1  NA      9430
-#>  2 -86      5325
-#>  3 -40.7  207999
-#>  4   4.53  79784
-#>  5  49.8   19063
-#>  6  95.1    7890
-#>  7 140.     3746
-#>  8 186.     1742
-#>  9 231.      921
-#> 10 276.      425
+#>        x      n
+#>    <dbl>  <dbl>
+#>  1  49.8  19063
+#>  2 412.      35
+#>  3 910.       2
+#>  4 140.    3746
+#>  5 367.     110
+#>  6 638.       5
+#>  7 -40.7 207999
+#>  8  NA     9430
+#>  9 276.     425
+#> 10 457.      23
 #> # ℹ more rows
 ```
 
@@ -324,7 +381,11 @@ db_flights |>
   geom_col(aes(x, n))
 ```
 
-![](reference/figures/README-unnamed-chunk-19-1.png)
+![Histogram showing the distribution of arrival delays created using the
+db_bin utility
+function](reference/figures/README-unnamed-chunk-20-1.png)
+
+Custom histogram of arrival delays using db_bin
 
 ``` r
 dbDisconnect(con)

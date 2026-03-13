@@ -32,30 +32,24 @@ db_compute_count(data, x, ..., y = n())
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
+
 # Returns the row count per am
-mtcars |>
+db_mtcars |>
   db_compute_count(am)
-#> # A tibble: 2 × 2
-#>      am `n()`
-#>   <dbl> <int>
-#> 1     0    19
-#> 2     1    13
 
 # Returns the average mpg per am
-mtcars |>
+db_mtcars |>
   db_compute_count(am, mean(mpg))
-#> # A tibble: 2 × 2
-#>      am `mean(mpg)`
-#>   <dbl>       <dbl>
-#> 1     0        17.1
-#> 2     1        24.4
 
 # Returns the average and sum of mpg per am
-mtcars |>
+db_mtcars |>
   db_compute_count(am, mean(mpg), sum(mpg))
-#> # A tibble: 2 × 3
-#>      am `mean(mpg)` `sum(mpg)`
-#>   <dbl>       <dbl>      <dbl>
-#> 1     0        17.1       326.
-#> 2     1        24.4       317.
+
+dbDisconnect(con)
+} # }
 ```

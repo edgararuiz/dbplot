@@ -8,6 +8,8 @@ tables in R are: tbl_sql, tbl_dbi, tbl_spark
 Requires database support for percentile/quantile functions. Confirmed
 to work with:
 
+- DuckDB (recommended for local examples) - uses quantile()
+
 - Spark/Hive (via sparklyr) - uses percentile_approx()
 
 - SQL Server (2012+) - uses PERCENTILE_CONT()
@@ -49,12 +51,15 @@ db_compute_boxplot(data, x, var, coef = 1.5)
 ## Examples
 
 ``` r
-mtcars |>
+if (FALSE) { # \dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
+
+db_mtcars |>
   db_compute_boxplot(am, mpg)
-#> # A tibble: 2 × 12
-#>      am     n lower middle upper max_raw min_raw   iqr min_iqr max_iqr  ymax
-#>   <dbl> <int> <dbl>  <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>
-#> 1     0    19  15.0   17.3  19.2    24.4    10.4  6.38    8.57    25.6  24.4
-#> 2     1    13  21     22.8  30.4    33.9    15   14.1     6.9     44.5  33.9
-#> # ℹ 1 more variable: ymin <dbl>
+
+dbDisconnect(con)
+} # }
 ```
