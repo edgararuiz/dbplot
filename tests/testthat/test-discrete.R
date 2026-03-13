@@ -31,8 +31,8 @@ test_that("Multiple aggregations work with line plots", {
 test_that("dbplot_bar creates expected plot", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 
@@ -48,8 +48,8 @@ test_that("dbplot_bar creates expected plot", {
 test_that("dbplot_bar with aggregation works", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 
@@ -66,8 +66,8 @@ test_that("dbplot_bar with aggregation works", {
 test_that("dbplot_line creates expected plot", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 

@@ -37,8 +37,8 @@ test_that("Compute raster 2 returns the right number of rows", {
 test_that("dbplot_raster creates expected plot", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_faithful <- dplyr::copy_to(con, faithful, "faithful")
 

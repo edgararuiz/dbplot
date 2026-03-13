@@ -22,8 +22,8 @@ test_that("calc_boxplot_sparklyr() returns the right number of rows", {
 test_that("dbplot_boxplot creates expected plot with DuckDB", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 

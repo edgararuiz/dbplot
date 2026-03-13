@@ -18,8 +18,8 @@ test_that("No warnings or errors are returned", {
 test_that("dbplot_histogram creates expected plot", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 
@@ -28,7 +28,7 @@ test_that("dbplot_histogram creates expected plot", {
   # Test plot structure
   expect_s3_class(p, "ggplot")
 
-  # Visual snapshot - saves plot as PNG
+  # Visual snapshot - testthat handles platform variants automatically
   save_plot_snapshot(p, "histogram-basic.png")
 
   DBI::dbDisconnect(con, shutdown = TRUE)
@@ -37,8 +37,8 @@ test_that("dbplot_histogram creates expected plot", {
 test_that("dbplot_histogram with binwidth works", {
   skip_on_cran()
   skip_if_not_installed("duckdb")
-  skip_if_not_installed("ragg")
 
+  set.seed(123)
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 
