@@ -15,6 +15,9 @@ dbplot_histogram(data, x, bins = 30, binwidth = NULL)
 
 \item{binwidth}{Fixed width for each bin, in the same units as the data. Overrides bins when specified}
 }
+\value{
+A ggplot object displaying a histogram of the specified variable.
+}
 \description{
 Uses dplyr operations to aggregate data and then `ggplot2`
 to create the histogram. Because of this approach,

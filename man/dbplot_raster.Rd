@@ -20,6 +20,10 @@ will be imported from the source}
 
 \item{complete}{Uses tidyr::complete to include empty bins. Inserts value of 0.}
 }
+\value{
+A ggplot object displaying a raster/heatmap plot of the aggregated data
+  across the two continuous variables.
+}
 \description{
 To visualize two continuous variables, we typically resort to a Scatter plot. However,
 this may not be practical when visualizing millions or billions of dots representing the

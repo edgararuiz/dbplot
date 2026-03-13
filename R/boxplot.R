@@ -27,6 +27,10 @@
 #' @param var A continuous variable
 #' @param coef Length of the whiskers as multiple of IQR. Defaults to 1.5
 #'
+#' @returns An ungrouped data.frame with boxplot statistics including columns for
+#'   the grouping variable(s), quartiles (lower, middle, upper), whisker bounds
+#'   (ymin, ymax), and the count of observations per group.
+#'
 #' @examples
 #' \dontrun{
 #' library(DBI)
@@ -135,6 +139,8 @@ calc_boxplot_mssql <- function(res, var) {
 #' @param x A discrete variable in which to group the boxplots
 #' @param var A continuous variable
 #' @param coef Length of the whiskers as multiple of IQR. Defaults to 1.5
+#'
+#' @returns A ggplot object displaying boxplots for the specified variable grouped by x.
 #'
 #' @seealso
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,

@@ -15,6 +15,11 @@ db_compute_count(data, x, ..., y = n())
 
 \item{y}{The aggregation formula. Defaults to count (n)}
 }
+\value{
+An ungrouped data.frame with the discrete variable and one or more
+  aggregation columns. The first column is the grouping variable (x), followed
+  by the aggregated values.
+}
 \description{
 Uses dplyr operations to aggregate data. Because of this approach,
 the calculations automatically run inside the database if `data` has

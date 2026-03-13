@@ -15,6 +15,10 @@ dbplot_bar(data, x, ..., y = n())
 
 \item{y}{The aggregation formula. Defaults to count (n)}
 }
+\value{
+A ggplot object with a bar plot. If multiple aggregations are provided,
+  returns a list of ggplot objects, one for each aggregation.
+}
 \description{
 Uses dplyr operations to aggregate data and then `ggplot2`
 to create the plot.  Because of this approach,
