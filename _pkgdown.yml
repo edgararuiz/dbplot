@@ -1,5 +1,8 @@
 url: https://edgararuiz.github.io/dbplot/
 
+build:
+  run_dont_run: true
+
 template:
   bootstrap: 5
   light-switch: true
