@@ -65,7 +65,7 @@ test_that("dbplot_bar with aggregation works", {
   con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   db_mtcars <- dplyr::copy_to(con, mtcars, "mtcars")
 
-  p <- db_mtcars |> dbplot_bar(am, avg_mpg = mean(mpg))
+  p <- db_mtcars |> dbplot_bar(am, avg_mpg = mean(mpg, na.rm = TRUE))
 
   expect_s3_class(p, "ggplot")
 
