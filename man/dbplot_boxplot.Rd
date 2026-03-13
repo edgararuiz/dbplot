@@ -26,8 +26,18 @@ Requires database support for percentile/quantile functions.
 See \code{\link{db_compute_boxplot}} for supported database backends.
 }
 \examples{
-mtcars |>
+\dontrun{
+library(DBI)
+library(dplyr)
+library(ggplot2)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
+
+db_mtcars |>
   dbplot_boxplot(am, mpg)
+
+dbDisconnect(con)
+}
 
 }
 \seealso{

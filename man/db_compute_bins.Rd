@@ -23,14 +23,22 @@ a database or sparklyr connection. The `class()` of such tables
 in R are: tbl_sql, tbl_dbi, tbl_spark
 }
 \examples{
+\dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
 # Returns record count for 30 bins in mpg
-mtcars |>
+db_mtcars |>
   db_compute_bins(mpg)
 
 # Returns record count for bins of size 10
-mtcars |>
+db_mtcars |>
   db_compute_bins(mpg, binwidth = 10)
+
+dbDisconnect(con)
+}
 }
 \seealso{
 \code{\link{db_bin}},

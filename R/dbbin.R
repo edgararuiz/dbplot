@@ -9,21 +9,27 @@
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
 #' @examples
-#'
+#' \dontrun{
+#' library(DBI)
 #' library(dplyr)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Important: Always name the field and
 #' # prefix the function with `!!` (See Details)
 #'
 #' # Uses the default 30 bins
-#' mtcars |>
+#' db_mtcars |>
 #'   group_by(x = !!db_bin(mpg)) |>
 #'   count()
 #'
 #' # Uses binwidth which overrides bins
-#' mtcars |>
+#' db_mtcars |>
 #'   group_by(x = !!db_bin(mpg, binwidth = 10)) |>
 #'   count()
+#'
+#' dbDisconnect(con)
+#' }
 #' @export
 db_bin <- function(var, bins = 30, binwidth = NULL) {
   if (!is.null(bins) && bins <= 0) {

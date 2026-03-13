@@ -10,6 +10,7 @@
 #'
 #' Requires database support for percentile/quantile functions. Confirmed to work with:
 #' \itemize{
+#'   \item DuckDB (recommended for local examples) - uses quantile()
 #'   \item Spark/Hive (via sparklyr) - uses percentile_approx()
 #'   \item SQL Server (2012+) - uses PERCENTILE_CONT()
 #'   \item PostgreSQL (9.4+) - uses percentile_cont()
@@ -27,9 +28,17 @@
 #' @param coef Length of the whiskers as multiple of IQR. Defaults to 1.5
 #'
 #' @examples
+#' \dontrun{
+#' library(DBI)
+#' library(dplyr)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_boxplot(am, mpg)
+#'
+#' dbDisconnect(con)
+#' }
 #' @export
 db_compute_boxplot <- function(data, x, var, coef = 1.5) {
   x <- enquo(x)
@@ -132,8 +141,18 @@ calc_boxplot_mssql <- function(res, var) {
 #'  \code{\link{dbplot_raster}}, \code{\link{dbplot_histogram}}
 #'
 #' @examples
-#' mtcars |>
+#' \dontrun{
+#' library(DBI)
+#' library(dplyr)
+#' library(ggplot2)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
+#'
+#' db_mtcars |>
 #'   dbplot_boxplot(am, mpg)
+#'
+#' dbDisconnect(con)
+#' }
 #'
 #' @export
 dbplot_boxplot <- function(data, x, var, coef = 1.5) {

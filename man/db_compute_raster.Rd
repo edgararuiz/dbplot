@@ -44,13 +44,20 @@ to the size of the results downloaded from the database:
 intersections without a value, the less data is downloaded from the database.
 }
 \examples{
-
+\dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_faithful <- copy_to(con, faithful, "faithful")
 
 # Returns a 100x100 grid of record count of intersections of eruptions and waiting
-faithful |>
+db_faithful |>
   db_compute_raster(eruptions, waiting)
 
 # Returns a 50x50 grid of eruption averages of intersections of eruptions and waiting
-faithful |>
+db_faithful |>
   db_compute_raster(eruptions, waiting, fill = mean(eruptions), resolution = 50)
+
+dbDisconnect(con)
+}
 }

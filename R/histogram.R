@@ -14,14 +14,22 @@
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
 #' @examples
+#' \dontrun{
+#' library(DBI)
+#' library(dplyr)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # Returns record count for 30 bins in mpg
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_bins(mpg)
 #'
 #' # Returns record count for bins of size 10
-#' mtcars |>
+#' db_mtcars |>
 #'   db_compute_bins(mpg, binwidth = 10)
+#'
+#' dbDisconnect(con)
+#' }
 #' @seealso
 #' \code{\link{db_bin}},
 #'
@@ -65,17 +73,23 @@ db_compute_bins <- function(data, x, bins = 30, binwidth = NULL) {
 #' @param binwidth Fixed width for each bin, in the same units as the data. Overrides bins when specified
 #'
 #' @examples
-#'
-#' library(ggplot2)
+#' \dontrun{
+#' library(DBI)
 #' library(dplyr)
+#' library(ggplot2)
+#' con <- dbConnect(duckdb::duckdb(), ":memory:")
+#' db_mtcars <- copy_to(con, mtcars, "mtcars")
 #'
 #' # A ggplot histogram with 30 bins
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_histogram(mpg)
 #'
 #' # A ggplot histogram with bins of size 10
-#' mtcars |>
+#' db_mtcars |>
 #'   dbplot_histogram(mpg, binwidth = 10)
+#'
+#' dbDisconnect(con)
+#' }
 #' @seealso
 #' \code{\link{dbplot_bar}}, \code{\link{dbplot_line}} ,
 #'  \code{\link{dbplot_raster}}

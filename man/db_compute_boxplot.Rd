@@ -24,6 +24,7 @@ in R are: tbl_sql, tbl_dbi, tbl_spark
 
 Requires database support for percentile/quantile functions. Confirmed to work with:
 \itemize{
+  \item DuckDB (recommended for local examples) - uses quantile()
   \item Spark/Hive (via sparklyr) - uses percentile_approx()
   \item SQL Server (2012+) - uses PERCENTILE_CONT()
   \item PostgreSQL (9.4+) - uses percentile_cont()
@@ -36,7 +37,15 @@ Note that this function supports input tbl that already contains
 grouping variables. This can be useful when creating faceted boxplots.
 }
 \examples{
+\dontrun{
+library(DBI)
+library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
-mtcars |>
+db_mtcars |>
   db_compute_boxplot(am, mpg)
+
+dbDisconnect(con)
+}
 }

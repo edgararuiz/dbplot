@@ -64,15 +64,14 @@ pak::pak("edgararuiz/dbplot")
 
 ## Example
 
-The functions work with standard database connections (via DBI/dbplyr) and with Spark connections (via sparklyr). A local `RSQLite` database will be used for the examples in this README.  
+The functions work with standard database connections (via DBI/dbplyr) and with Spark connections (via sparklyr). A local DuckDB database will be used for the examples in this README.  
 
 
 ```{r}
 library(DBI)
-library(odbc)
 library(dplyr)
 
-con <- dbConnect(RSQLite::SQLite(), ":memory:")
+con <- dbConnect(duckdb::duckdb(), ":memory:")
 db_flights <- copy_to(con, nycflights13::flights, "flights")
 ```
 
@@ -82,24 +81,24 @@ db_flights <- copy_to(con, nycflights13::flights, "flights")
 
 By default `dbplot_histogram()` creates a 30 bin histogram
 
-```{r}
+```{r, fig.cap="Histogram of flight distances with default 30 bins", fig.alt="Histogram showing the distribution of flight distances with 30 bins"}
 library(ggplot2)
 
-db_flights |> 
+db_flights |>
   dbplot_histogram(distance)
 ```
 
 Use `binwidth` to fix the bin size
 
-```{r}
-db_flights |> 
+```{r, fig.cap="Histogram of flight distances with 400-unit bins", fig.alt="Histogram showing the distribution of flight distances with fixed bin width of 400 units"}
+db_flights |>
   dbplot_histogram(distance, binwidth = 400)
 ```
 
 Because it outputs a `ggplot2` object, more customization can be done
 
-```{r}
-db_flights |> 
+```{r, fig.cap="Customized histogram with title and theme", fig.alt="Histogram of flight distances with custom title 'Flights - Distance traveled' and minimal theme"}
+db_flights |>
   dbplot_histogram(distance, binwidth = 400) +
   labs(title = "Flights - Distance traveled") +
   theme_bw()
@@ -113,44 +112,44 @@ A Raster plot basically does the same as a Histogram. It takes two continuous va
 
 
 - If no `fill` argument is passed, the default calculation will be count, `n()`
-```{r}
+```{r, fig.cap="Raster plot of scheduled departure and arrival times", fig.alt="Heatmap showing the count of flights by scheduled departure time (x-axis) and scheduled arrival time (y-axis)"}
 db_flights |>
-  dbplot_raster(sched_dep_time, sched_arr_time) 
+  dbplot_raster(sched_dep_time, sched_arr_time)
 ```
 
 
 - Pass an aggregation formula that can run inside the database
-```{r}
+```{r, fig.cap="Raster plot showing average flight distance by time", fig.alt="Heatmap showing the average flight distance for each combination of scheduled departure and arrival times"}
 db_flights |>
   dbplot_raster(
-    sched_dep_time, 
-    sched_arr_time, 
+    sched_dep_time,
+    sched_arr_time,
     mean(distance, na.rm = TRUE)
-    ) 
+    )
 ```
 
-- Increase or decrease for more, or less, definition.  The `resolution` argument controls that, it defaults to 100 
-```{r}
+- Increase or decrease for more, or less, definition.  The `resolution` argument controls that, it defaults to 100
+```{r, fig.cap="Raster plot with lower resolution (20x20 grid)", fig.alt="Heatmap with 20x20 resolution showing average flight distance by scheduled times with larger bins"}
 db_flights |>
   dbplot_raster(
-    sched_dep_time, 
-    sched_arr_time, 
+    sched_dep_time,
+    sched_arr_time,
     mean(distance, na.rm = TRUE),
     resolution = 20
-    ) 
+    )
 ```
 
 ### Bar Plot
 
 - `dbplot_bar()` defaults to a count() of each value in a discrete variable
-```{r}
+```{r, fig.cap="Bar plot of flight counts by origin airport", fig.alt="Bar chart showing the number of flights from each origin airport (EWR, JFK, LGA)"}
 db_flights |>
   dbplot_bar(origin)
 ```
 
 
 - Pass an aggregation formula that will be calculated for each value in the discrete variable
-```{r}
+```{r, fig.cap="Bar plot of average departure delay by origin airport", fig.alt="Bar chart showing the average departure delay in minutes for each origin airport"}
 db_flights |>
   dbplot_bar(origin, avg_delay =  mean(dep_delay, na.rm = TRUE))
 ```
@@ -158,13 +157,13 @@ db_flights |>
 ### Line plot
 
 - `dbplot_line()` defaults to a count() of each value in a discrete variable
-```{r}
+```{r, fig.cap="Line plot of flight counts by month", fig.alt="Line chart showing the number of flights per month throughout the year"}
 db_flights |>
   dbplot_line(month)
 ```
 
 - Pass a formula that will be operated for each value in the discrete variable
-```{r}
+```{r, fig.cap="Line plot of average departure delay by month", fig.alt="Line chart showing the average departure delay in minutes for each month of the year"}
 db_flights |>
   dbplot_line(month, avg_delay = mean(dep_delay, na.rm = TRUE))
 ```
@@ -177,6 +176,7 @@ Boxplot functions require database support for percentile/quantile calculations.
 
 **Supported databases:**
 
+- DuckDB (recommended for local examples) - uses `quantile()`
 - Spark/Hive (via sparklyr) - uses `percentile_approx()`
 - SQL Server (2012+) - uses `PERCENTILE_CONT()`
 - PostgreSQL (9.4+) - uses `percentile_cont()`
@@ -186,8 +186,15 @@ Boxplot functions require database support for percentile/quantile calculations.
 
 Here is an example using `dbplot_boxplot()` with a local data frame:
 
-```{r}
+```{r, fig.cap="Boxplot of flight distances by origin airport (local data)", fig.alt="Boxplot showing the distribution of flight distances for each origin airport using a local data frame"}
 nycflights13::flights |>
+  dbplot_boxplot(origin, distance)
+```
+
+Boxplot also works with database connections that support quantile functions:
+
+```{r, fig.cap="Boxplot of flight distances by origin airport (DuckDB)", fig.alt="Boxplot showing the distribution of flight distances for each origin airport using a DuckDB database connection"}
+db_flights |>
   dbplot_boxplot(origin, distance)
 ```
 
@@ -211,7 +218,7 @@ db_flights |>
 
 The data can be piped to a plot
 
-```{r}
+```{r, fig.cap="Custom histogram of arrival delays using db_compute_bins", fig.alt="Custom colored histogram showing the distribution of arrival delays between -50 and 100 minutes"}
 db_flights |>
   filter(arr_delay < 100 , arr_delay > -50) |>
   db_compute_bins(arr_delay) |>
@@ -235,7 +242,7 @@ db_flights |>
   count()
 ```
 
-```{r}
+```{r, fig.cap="Custom histogram of arrival delays using db_bin", fig.alt="Histogram showing the distribution of arrival delays created using the db_bin utility function"}
 db_flights |>
   filter(!is.na(arr_delay)) |>
   group_by(x = !! db_bin(arr_delay)) |>

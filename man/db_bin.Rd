@@ -19,19 +19,25 @@ in an unevaluated fashion.  This way, the formula can be then passed inside a dp
 verb.
 }
 \examples{
-
+\dontrun{
+library(DBI)
 library(dplyr)
+con <- dbConnect(duckdb::duckdb(), ":memory:")
+db_mtcars <- copy_to(con, mtcars, "mtcars")
 
 # Important: Always name the field and
 # prefix the function with `!!` (See Details)
 
 # Uses the default 30 bins
-mtcars |>
+db_mtcars |>
   group_by(x = !!db_bin(mpg)) |>
   count()
 
 # Uses binwidth which overrides bins
-mtcars |>
+db_mtcars |>
   group_by(x = !!db_bin(mpg, binwidth = 10)) |>
   count()
+
+dbDisconnect(con)
+}
 }

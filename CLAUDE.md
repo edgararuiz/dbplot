@@ -5,7 +5,7 @@
 - **Consistent `tail` values**: Use `tail -20` as default for most commands
 - Only vary when explicitly needed (e.g., very long build logs require `tail -50`)
 - This prevents unnecessary permission prompts for similar commands
-
+- Before asking for a new permission check to see if there is a previously approved viable one that can be used in the settings.local.json file
 ## Project Context
 
 This is an R package for visualizing data inside databases. Key conventions:
@@ -55,7 +55,11 @@ pkgdown::build_site()       # Rebuild website
 ## Database Support
 
 Functions work with:
-- Standard DBI/dbplyr connections (SQLite, PostgreSQL, SQL Server, Oracle)
+- Standard DBI/dbplyr connections (DuckDB, PostgreSQL, SQL Server, Oracle)
 - Spark connections via sparklyr
 
+Examples use DuckDB (not SQLite) for better performance and boxplot support.
+
 Note: Boxplot functions require database percentile function support.
+Supported: DuckDB, PostgreSQL, SQL Server, Oracle, Spark/Hive
+Not supported: SQLite, MySQL < 8.0, MariaDB

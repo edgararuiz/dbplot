@@ -19,6 +19,9 @@
 * All examples now use native pipe `|>` instead of `%>%`
 * Fixed typos in code and documentation
 * Improved S3 method exports using modern roxygen2 patterns
+* Examples now use DuckDB instead of SQLite for better performance and boxplot
+  support. DuckDB's native quantile() function enables complete database workflow
+  demonstrations including boxplot examples.
 
 
 # dbplot 0.3.3
