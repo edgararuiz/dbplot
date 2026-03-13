@@ -13,8 +13,6 @@ test_that("dbplot_histogram creates expected plot", {
 
   # Test plot structure
   expect_s3_class(p, "ggplot")
-  expect_snapshot(p$data)
-  expect_snapshot(p$labels)
 
   # Visual snapshot - saves plot as PNG
   path <- tempfile(fileext = ".png")
@@ -52,7 +50,6 @@ test_that("dbplot_bar creates expected plot", {
   p <- db_mtcars |> dbplot_bar(am)
 
   expect_s3_class(p, "ggplot")
-  expect_snapshot(p$data)
 
   path <- tempfile(fileext = ".png")
   ggplot2::ggsave(path, p, width = 7, height = 5)

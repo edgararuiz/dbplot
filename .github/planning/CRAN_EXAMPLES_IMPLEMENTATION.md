@@ -339,44 +339,47 @@ devtools::check()
 
 ## Implementation Checklist
 
-### Phase 1: Update Examples
-- [ ] db_compute_count()
-- [ ] db_compute_bins()
-- [ ] db_compute_raster()
-- [ ] db_compute_raster2() (if exists)
-- [ ] db_compute_boxplot()
-- [ ] dbplot_bar()
-- [ ] dbplot_line()
-- [ ] dbplot_histogram()
-- [ ] dbplot_raster()
-- [ ] dbplot_boxplot()
-- [ ] db_bin()
+### Phase 1: Update Examples ✅ COMPLETE
+- [x] db_compute_count()
+- [x] db_compute_bins()
+- [x] db_compute_raster()
+- [x] db_compute_raster2() (shares @examples via @rdname)
+- [x] db_compute_boxplot()
+- [x] dbplot_bar()
+- [x] dbplot_line()
+- [x] dbplot_histogram()
+- [x] dbplot_raster()
+- [x] dbplot_boxplot()
+- [x] db_bin()
 
-### Phase 2: Snapshot Tests
-- [ ] Create test-plot-snapshots.R
-- [ ] Add histogram tests (2 tests)
-- [ ] Add bar plot tests (2 tests)
-- [ ] Add line plot test (1 test)
-- [ ] Add raster plot test (1 test)
-- [ ] Add boxplot test (1 test)
+### Phase 2: Snapshot Tests ✅ COMPLETE
+- [x] Create test-plot-snapshots.R
+- [x] Add histogram tests (2 tests)
+- [x] Add bar plot tests (2 tests)
+- [x] Add line plot test (1 test)
+- [x] Add raster plot test (1 test)
+- [x] Add boxplot test (1 test)
+- [x] Add testthat 3e to DESCRIPTION
+- [x] Run tests to create PNG snapshots (7 PNGs created)
 
-### Phase 3: Computation Tests
-- [ ] Create test-duckdb-computations.R
-- [ ] Add db_compute_bins test
-- [ ] Add db_compute_count test
-- [ ] Add db_compute_raster test
-- [ ] Add db_compute_boxplot test
+### Phase 3: Computation Tests ✅ COMPLETE
+- [x] Create test-duckdb-computations.R
+- [x] Add db_compute_bins test
+- [x] Add db_compute_count test
+- [x] Add db_compute_raster test
+- [x] Add db_compute_boxplot test
+- [x] Run tests - all pass (0 failures, 57 passes)
 
-### Phase 4: pkgdown Configuration
-- [ ] Add `build: run_dont_run: true` to _pkgdown.yml
+### Phase 4: pkgdown Configuration ✅ COMPLETE
+- [x] Add `build: run_dont_run: true` to _pkgdown.yml
 
 ### Phase 5: Documentation
 - [ ] Run devtools::document()
 - [ ] Verify .Rd files updated
 
 ### Phase 6: Verification
-- [ ] Run devtools::test() - create snapshots
-- [ ] Review snapshots in _snaps/test-plot-snapshots/
+- [ ] Run devtools::test() - verify all tests pass
+- [ ] Review snapshots in _snaps/plot-snapshots/
 - [ ] Run devtools::check() - verify passes
 - [ ] Verify examples show "# Not run:"
 
