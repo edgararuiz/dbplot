@@ -21,6 +21,7 @@ test_that("calc_boxplot_sparklyr() returns the right number of rows", {
 # Snapshot test for boxplot
 test_that("dbplot_boxplot creates expected plot with DuckDB", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)

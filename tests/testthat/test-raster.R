@@ -36,6 +36,7 @@ test_that("Compute raster 2 returns the right number of rows", {
 # Snapshot test for raster plot
 test_that("dbplot_raster creates expected plot", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)

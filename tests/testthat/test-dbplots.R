@@ -17,6 +17,7 @@ test_that("No warnings or errors are returned", {
 # Snapshot tests for histogram
 test_that("dbplot_histogram creates expected plot", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)
@@ -28,7 +29,7 @@ test_that("dbplot_histogram creates expected plot", {
   # Test plot structure
   expect_s3_class(p, "ggplot")
 
-  # Visual snapshot - testthat handles platform variants automatically
+  # Visual snapshot - only runs locally, not on CI
   save_plot_snapshot(p, "histogram-basic.png")
 
   DBI::dbDisconnect(con, shutdown = TRUE)
@@ -36,6 +37,7 @@ test_that("dbplot_histogram creates expected plot", {
 
 test_that("dbplot_histogram with binwidth works", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)

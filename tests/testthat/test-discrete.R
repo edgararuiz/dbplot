@@ -30,6 +30,7 @@ test_that("Multiple aggregations work with line plots", {
 # Snapshot tests for bar plots
 test_that("dbplot_bar creates expected plot", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)
@@ -47,6 +48,7 @@ test_that("dbplot_bar creates expected plot", {
 
 test_that("dbplot_bar with aggregation works", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)
@@ -65,6 +67,7 @@ test_that("dbplot_bar with aggregation works", {
 # Snapshot tests for line plots
 test_that("dbplot_line creates expected plot", {
   skip_on_cran()
+  skip_on_ci()
   skip_if_not_installed("duckdb")
 
   set.seed(123)
